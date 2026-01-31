@@ -1,5 +1,6 @@
 import { Star, Quote } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ScrollRevealSection from './ScrollRevealSection';
 
 const Testimonials = () => {
   const { t } = useLanguage();
@@ -46,57 +47,60 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="section-padding bg-background">
       <div className="container-main">
+        <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
+        <div className="text-center mb-12 sm:mb-20">
+          <span className="animate-reveal inline-block px-5 py-2.5 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-5">
             {t('testimonials.badge')}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
             {t('testimonials.title')} <span className="text-gradient">{t('testimonials.titleHighlight')}</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="animate-reveal animate-reveal-delay-2 text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('testimonials.subtitle')}
           </p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="card-premium relative"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`animate-reveal card-premium relative p-5 sm:p-6 card-hover-lift ${
+                index < 2 ? 'animate-reveal-delay-2' : index < 4 ? 'animate-reveal-delay-3' : 'animate-reveal-delay-4'
+              }`}
             >
               {/* Quote Icon */}
-              <div className="absolute top-6 right-6 text-primary/10">
-                <Quote size={40} />
+              <div className="absolute top-3 right-3 sm:top-6 sm:right-6 text-primary/10">
+                <Quote className="w-6 h-6 sm:w-10 sm:h-10" />
               </div>
 
               {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-0.5 sm:gap-1 mb-2 sm:mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={18} className="fill-star text-star" />
+                  <Star key={i} className="w-3.5 h-3.5 sm:w-[18px] sm:h-[18px] fill-star text-star" />
                 ))}
               </div>
 
               {/* Content */}
-              <p className="text-foreground mb-6 relative z-10">"{testimonial.content}"</p>
+              <p className="text-foreground text-xs sm:text-base mb-3 sm:mb-6 relative z-10 line-clamp-4 sm:line-clamp-none">"{testimonial.content}"</p>
 
               {/* Author */}
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gradient-primary flex items-center justify-center flex-shrink-0">
+                  <span className="text-primary-foreground font-bold text-xs sm:text-base">
                     {testimonial.name.charAt(0)}
                   </span>
                 </div>
-                <div>
-                  <p className="font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                <div className="min-w-0">
+                  <p className="font-semibold text-foreground text-xs sm:text-base truncate">{testimonial.name}</p>
+                  <p className="text-[10px] sm:text-sm text-muted-foreground truncate">{testimonial.role}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
+        </ScrollRevealSection>
       </div>
     </section>
   );

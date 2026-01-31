@@ -5,30 +5,32 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ScrollRevealSection from './ScrollRevealSection';
 
 const FAQ = () => {
   const { t } = useLanguage();
-  
+
   const faqs = t('faq.items') as unknown as { question: string; answer: string }[];
 
   return (
     <section id="faq" className="section-padding bg-secondary/30">
       <div className="container-main">
+        <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
+        <div className="text-center mb-12 sm:mb-20">
+          <span className="animate-reveal inline-block px-5 py-2.5 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-5">
             {t('faq.badge')}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
             {t('faq.title')} <span className="text-gradient">{t('faq.titleHighlight')}</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="animate-reveal animate-reveal-delay-2 text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
             {t('faq.subtitle')}
           </p>
         </div>
 
         {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto">
+        <div className="animate-reveal animate-reveal-delay-3 max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {Array.isArray(faqs) && faqs.map((faq, index) => (
               <AccordionItem
@@ -46,6 +48,7 @@ const FAQ = () => {
             ))}
           </Accordion>
         </div>
+        </ScrollRevealSection>
       </div>
     </section>
   );

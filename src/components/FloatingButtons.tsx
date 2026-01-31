@@ -1,11 +1,12 @@
 import { MessageCircle } from 'lucide-react';
+import { getWhatsAppLink } from '@/lib/config';
 
 const FloatingButtons = () => {
   return (
     <>
       {/* WhatsApp Button */}
       <a
-        href="https://wa.me/972501234567?text=Hi!%20I%20found%20you%20on%20Instagram%20and%20I'm%20interested%20in%20your%20services."
+        href={getWhatsAppLink()}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 group"
@@ -13,11 +14,11 @@ const FloatingButtons = () => {
       >
         <div className="relative">
           {/* Pulse animation */}
-          <div className="absolute inset-0 bg-whatsapp rounded-full animate-ping opacity-25" />
+          <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-30" />
           
           {/* Button */}
-          <div className="relative w-14 h-14 md:w-16 md:h-16 bg-whatsapp rounded-full shadow-elevated flex items-center justify-center hover:brightness-110 hover:scale-110 transition-all duration-300">
-            <MessageCircle size={28} className="text-whatsapp-foreground" />
+          <div className="relative w-14 h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full shadow-lg flex items-center justify-center hover:brightness-110 hover:scale-110 transition-all duration-300 hover:shadow-xl">
+            <MessageCircle size={28} className="text-white" />
           </div>
           
           {/* Tooltip */}

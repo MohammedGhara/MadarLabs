@@ -60,6 +60,41 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Backend & Deployment Setup
+
+### 1. Configure environment variables
+
+Copy `.env.example` to `.env` and set your values:
+
+```sh
+cp .env.example .env
+```
+
+Edit `.env` with your backend URL and contact info:
+
+- **VITE_API_BASE_URL** – Your backend API URL (e.g. `https://api.yourdomain.com`) – required for the lead form
+- **VITE_WHATSAPP_NUMBER** – Your WhatsApp number (digits only, e.g. `972501234567`)
+- **VITE_WHATSAPP_MESSAGE** – Pre-filled message when users click the WhatsApp button
+- **VITE_INSTAGRAM_URL** – Your Instagram profile URL
+- **VITE_EMAIL** – Contact email
+- **VITE_SITE_URL** – Your site URL for SEO
+
+### 2. Backend API
+
+The lead form sends data to `POST {VITE_API_BASE_URL}/api/leads`. See **[BACKEND_API.md](./BACKEND_API.md)** for the full API spec your backend must implement.
+
+### 3. Build & deploy
+
+```sh
+npm run build
+```
+
+The output is in the `dist/` folder. Deploy it to Vercel, Netlify, or any static host. Set the same environment variables in your hosting provider’s dashboard.
+
+### 4. CORS
+
+Configure your backend to allow requests from your frontend domain. Allow `Content-Type` and `POST` for `/api/leads`.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.

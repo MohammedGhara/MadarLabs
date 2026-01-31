@@ -1,5 +1,6 @@
 import { Phone, PenTool, Code, Gauge, Rocket, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ScrollRevealSection from './ScrollRevealSection';
 
 const Process = () => {
   const { t } = useLanguage();
@@ -46,39 +47,62 @@ const Process = () => {
   return (
     <section id="process" className="section-padding bg-background">
       <div className="container-main">
+        <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
+        <div className="text-center mb-12 sm:mb-20">
+          <span className="animate-reveal inline-block px-5 py-2.5 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-5">
             {t('process.badge')}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
             {t('process.title')} <span className="text-gradient">{t('process.titleHighlight')}</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="animate-reveal animate-reveal-delay-2 text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('process.subtitle')}
           </p>
         </div>
 
-        {/* Timeline */}
+        {/* Timeline - Vertical on mobile, grid on desktop */}
         <div className="relative">
-          {/* Connection Line */}
+          {/* Desktop: horizontal connection line */}
           <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-accent to-primary opacity-20" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Mobile: vertical timeline with connecting line */}
+          <div className="md:hidden">
+            {steps.map((step, index) => (
+              <div key={index} className="flex gap-4">
+                {/* Left: icon + connecting line */}
+                <div className="flex flex-col items-center">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-soft shrink-0 ring-4 ring-background">
+                    <step.icon className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div className="w-0.5 min-h-[40px] mt-2 bg-gradient-to-b from-primary/50 to-accent/50 rounded-full" />
+                  )}
+                </div>
+
+                {/* Right: step content */}
+                <div className="flex-1 min-w-0 pt-0.5 pb-6 last:pb-0">
+                  <span className="inline-block px-2.5 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold mb-2">
+                    {step.number}
+                  </span>
+                  <h3 className="text-base font-bold text-foreground mb-1.5">{t(step.titleKey)}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t(step.descKey)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: grid layout */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                {/* Step Card */}
-                <div className="card-premium text-center h-full">
-                  {/* Number Badge */}
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center">
+                <div className="card-premium text-center h-full p-6">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center shadow-soft">
                     <span className="text-xs font-bold text-primary-foreground">{step.number}</span>
                   </div>
-
-                  {/* Icon */}
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 mt-4">
-                    <step.icon size={28} className="text-primary" />
+                    <step.icon className="w-7 h-7 text-primary" />
                   </div>
-
                   <h3 className="text-lg font-bold text-foreground mb-2">{t(step.titleKey)}</h3>
                   <p className="text-sm text-muted-foreground">{t(step.descKey)}</p>
                 </div>
@@ -88,25 +112,31 @@ const Process = () => {
         </div>
 
         {/* Timeline Estimates */}
-        <div className="mt-16">
-          <div className="card-premium bg-gradient-primary p-8 md:p-10">
-            <div className="flex items-center gap-3 mb-6">
-              <Clock size={24} className="text-primary-foreground" />
-              <h3 className="text-xl font-bold text-primary-foreground">{t('process.timelines')}</h3>
+        <div className="mt-10 sm:mt-16">
+          <div className="card-premium bg-gradient-primary p-6 sm:p-8 md:p-10 overflow-hidden relative">
+            {/* Decorative glow - mobile only */}
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full blur-3xl pointer-events-none md:hidden" />
+            <div className="flex items-center gap-3 mb-4 sm:mb-6 relative z-10">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-primary-foreground">{t('process.timelines')}</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Mobile: vertical stack, Desktop: 3-column grid */}
+            <div className="flex flex-col md:grid md:grid-cols-3 gap-3 md:gap-6 relative z-10">
               {timelines.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center"
+                  className="flex items-center justify-between md:flex-col md:text-center gap-4 md:gap-0 bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 md:py-5"
                 >
-                  <p className="text-primary-foreground/80 text-sm mb-1">{t(item.typeKey)}</p>
-                  <p className="text-2xl font-bold text-primary-foreground">{item.duration} days</p>
+                  <p className="text-primary-foreground/90 text-sm md:text-sm font-medium md:mb-1">{t(item.typeKey)}</p>
+                  <p className="text-xl md:text-2xl font-bold text-primary-foreground md:mt-0">{item.duration} days</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
+        </ScrollRevealSection>
       </div>
     </section>
   );

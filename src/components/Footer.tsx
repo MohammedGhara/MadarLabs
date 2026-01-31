@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import { MapPin, Mail, Phone } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { config, getWhatsAppLink } from '@/lib/config';
 
 const Footer = () => {
   const { t, dir } = useLanguage();
@@ -16,7 +18,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="relative bg-foreground text-background overflow-hidden">
+      {/* Subtle gradient accent at top */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="container-main section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
@@ -34,7 +38,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://instagram.com/vertexagency"
+                href={config.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors"
@@ -45,7 +49,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href="https://wa.me/972501234567"
+                href={getWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors"
@@ -86,20 +90,22 @@ const Footer = () => {
               <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                 <Mail size={20} className="text-accent flex-shrink-0 mt-0.5" />
                 <a
-                  href="mailto:hello@vertexagency.com"
+                  href={`mailto:${config.email}`}
                   className="text-background/70 hover:text-background transition-colors"
                 >
-                  hello@vertexagency.com
+                  {config.email}
                 </a>
               </li>
               <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                 <Phone size={20} className="text-accent flex-shrink-0 mt-0.5" />
                 <a
-                  href="https://wa.me/972501234567"
+                  href={getWhatsAppLink()}
                   className="text-background/70 hover:text-background transition-colors"
                   dir="ltr"
                 >
-                  +972 50 123 4567
+                  +{config.whatsappNumber.length >= 12
+                  ? `${config.whatsappNumber.slice(0, 3)} ${config.whatsappNumber.slice(3, 5)} ${config.whatsappNumber.slice(5, 8)} ${config.whatsappNumber.slice(8)}`
+                  : config.whatsappNumber}
                 </a>
               </li>
             </ul>
@@ -112,12 +118,12 @@ const Footer = () => {
             {t('footer.copyright').replace('{year}', currentYear.toString())}
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <a href="#" className="text-background/50 hover:text-background transition-colors">
+            <Link to="/privacy" className="text-background/50 hover:text-background transition-colors">
               {t('footer.privacyPolicy')}
-            </a>
-            <a href="#" className="text-background/50 hover:text-background transition-colors">
+            </Link>
+            <Link to="/terms" className="text-background/50 hover:text-background transition-colors">
               {t('footer.termsOfService')}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
