@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t, dir } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,12 +17,12 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { href: '#services', label: 'Services' },
-    { href: '#portfolio', label: 'Portfolio' },
-    { href: '#process', label: 'Process' },
-    { href: '#pricing', label: 'Pricing' },
-    { href: '#testimonials', label: 'Reviews' },
-    { href: '#faq', label: 'FAQ' },
+    { href: '#services', label: t('nav.services') },
+    { href: '#portfolio', label: t('nav.portfolio') },
+    { href: '#process', label: t('nav.process') },
+    { href: '#pricing', label: t('nav.pricing') },
+    { href: '#testimonials', label: t('nav.reviews') },
+    { href: '#faq', label: t('nav.faq') },
   ];
 
   return (
@@ -55,21 +58,25 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA + Language */}
           <div className="hidden lg:flex items-center gap-4">
+            <LanguageSwitcher />
             <a href="#contact" className="btn-primary text-sm">
-              Get Free Consultation
+              {t('nav.getConsultation')}
             </a>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="lg:hidden flex items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-foreground"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Menu */}
@@ -81,7 +88,7 @@ const Header = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-base font-medium text-foreground py-2"
+                  className={`text-base font-medium text-foreground py-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                 >
                   {link.label}
                 </a>
@@ -91,7 +98,7 @@ const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="btn-primary text-center mt-4"
               >
-                Get Free Consultation
+                {t('nav.getConsultation')}
               </a>
             </div>
           </div>

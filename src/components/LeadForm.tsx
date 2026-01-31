@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
 import { z } from 'zod';
-
-const leadFormSchema = z.object({
-  fullName: z.string().trim().min(2, 'Name is required').max(100),
-  businessType: z.string().trim().min(2, 'Business type is required').max(100),
-  serviceNeeded: z.string().min(1, 'Please select a service'),
-  budgetRange: z.string().min(1, 'Please select a budget range'),
-  whatsappNumber: z.string().trim().min(10, 'Valid WhatsApp number required').max(20),
-  instagramUsername: z.string().trim().max(50).optional(),
-  message: z.string().trim().max(500).optional(),
-});
-
-type LeadFormData = z.infer<typeof leadFormSchema>;
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const LeadForm = () => {
+  const { t, dir } = useLanguage();
+  
+  const leadFormSchema = z.object({
+    fullName: z.string().trim().min(2, t('leadForm.errors.nameRequired')).max(100),
+    businessType: z.string().trim().min(2, t('leadForm.errors.businessTypeRequired')).max(100),
+    serviceNeeded: z.string().min(1, t('leadForm.errors.serviceRequired')),
+    budgetRange: z.string().min(1, t('leadForm.errors.budgetRequired')),
+    whatsappNumber: z.string().trim().min(10, t('leadForm.errors.whatsappRequired')).max(20),
+    instagramUsername: z.string().trim().max(50).optional(),
+    message: z.string().trim().max(500).optional(),
+  });
+
+  type LeadFormData = z.infer<typeof leadFormSchema>;
+
   const [formData, setFormData] = useState<LeadFormData>({
     fullName: '',
     businessType: '',
@@ -61,24 +64,8 @@ const LeadForm = () => {
     setIsSubmitting(false);
   };
 
-  const services = [
-    'Business Website',
-    'E-Commerce Store',
-    'Mobile App',
-    'Booking/Ordering System',
-    'Admin Dashboard/CRM',
-    'Branding & UI/UX',
-    'Other',
-  ];
-
-  const budgetRanges = [
-    'Under $1,500',
-    '$1,500 - $3,500',
-    '$3,500 - $8,000',
-    '$8,000 - $15,000',
-    '$15,000+',
-    'Not sure yet',
-  ];
+  const services = t('leadForm.services') as unknown as string[];
+  const budgetRanges = t('leadForm.budgetRanges') as unknown as string[];
 
   if (isSubmitted) {
     return (
@@ -89,9 +76,9 @@ const LeadForm = () => {
               <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 size={40} className="text-primary-foreground" />
               </div>
-              <h2 className="text-3xl font-bold text-foreground mb-4">Message Sent!</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-4">{t('leadForm.success.title')}</h2>
               <p className="text-lg text-muted-foreground">
-                Thank you for reaching out. We'll reply within 24 hours.
+                {t('leadForm.success.message')}
               </p>
             </div>
           </div>
@@ -106,14 +93,13 @@ const LeadForm = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
-            Get Started
+            {t('leadForm.badge')}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Let's build something <span className="text-gradient">amazing</span>
+            {t('leadForm.title')} <span className="text-gradient">{t('leadForm.titleHighlight')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tell us about your project and we'll get back to you within 24 hours with a free
-            consultation.
+            {t('leadForm.subtitle')}
           </p>
         </div>
 
@@ -123,8 +109,8 @@ const LeadForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Full Name */}
               <div className="md:col-span-2">
-                <label htmlFor="fullName" className="block text-sm font-medium text-foreground mb-2">
-                  Full Name *
+                <label htmlFor="fullName" className={`block text-sm font-medium text-foreground mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                  {t('leadForm.fields.fullName')} *
                 </label>
                 <input
                   type="text"
@@ -134,18 +120,19 @@ const LeadForm = () => {
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
                     errors.fullName ? 'border-destructive' : 'border-border'
-                  }`}
-                  placeholder="Your full name"
+                  } ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                  placeholder={t('leadForm.fields.fullName')}
+                  dir={dir}
                 />
                 {errors.fullName && (
-                  <p className="text-destructive text-sm mt-1">{errors.fullName}</p>
+                  <p className={`text-destructive text-sm mt-1 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>{errors.fullName}</p>
                 )}
               </div>
 
               {/* Business Type */}
               <div className="md:col-span-2">
-                <label htmlFor="businessType" className="block text-sm font-medium text-foreground mb-2">
-                  Business Type *
+                <label htmlFor="businessType" className={`block text-sm font-medium text-foreground mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                  {t('leadForm.fields.businessType')} *
                 </label>
                 <input
                   type="text"
@@ -155,18 +142,19 @@ const LeadForm = () => {
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
                     errors.businessType ? 'border-destructive' : 'border-border'
-                  }`}
-                  placeholder="e.g., Restaurant, Gym, Clinic, E-commerce..."
+                  } ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                  placeholder={t('leadForm.fields.businessTypePlaceholder')}
+                  dir={dir}
                 />
                 {errors.businessType && (
-                  <p className="text-destructive text-sm mt-1">{errors.businessType}</p>
+                  <p className={`text-destructive text-sm mt-1 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>{errors.businessType}</p>
                 )}
               </div>
 
               {/* Service Needed */}
               <div>
-                <label htmlFor="serviceNeeded" className="block text-sm font-medium text-foreground mb-2">
-                  Service Needed *
+                <label htmlFor="serviceNeeded" className={`block text-sm font-medium text-foreground mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                  {t('leadForm.fields.serviceNeeded')} *
                 </label>
                 <select
                   id="serviceNeeded"
@@ -175,24 +163,25 @@ const LeadForm = () => {
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
                     errors.serviceNeeded ? 'border-destructive' : 'border-border'
-                  }`}
+                  } ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                  dir={dir}
                 >
-                  <option value="">Select a service</option>
-                  {services.map((service) => (
+                  <option value="">{t('leadForm.fields.selectService')}</option>
+                  {Array.isArray(services) && services.map((service) => (
                     <option key={service} value={service}>
                       {service}
                     </option>
                   ))}
                 </select>
                 {errors.serviceNeeded && (
-                  <p className="text-destructive text-sm mt-1">{errors.serviceNeeded}</p>
+                  <p className={`text-destructive text-sm mt-1 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>{errors.serviceNeeded}</p>
                 )}
               </div>
 
               {/* Budget Range */}
               <div>
-                <label htmlFor="budgetRange" className="block text-sm font-medium text-foreground mb-2">
-                  Budget Range *
+                <label htmlFor="budgetRange" className={`block text-sm font-medium text-foreground mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                  {t('leadForm.fields.budgetRange')} *
                 </label>
                 <select
                   id="budgetRange"
@@ -201,24 +190,25 @@ const LeadForm = () => {
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${
                     errors.budgetRange ? 'border-destructive' : 'border-border'
-                  }`}
+                  } ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                  dir={dir}
                 >
-                  <option value="">Select your budget</option>
-                  {budgetRanges.map((range) => (
+                  <option value="">{t('leadForm.fields.selectBudget')}</option>
+                  {Array.isArray(budgetRanges) && budgetRanges.map((range) => (
                     <option key={range} value={range}>
                       {range}
                     </option>
                   ))}
                 </select>
                 {errors.budgetRange && (
-                  <p className="text-destructive text-sm mt-1">{errors.budgetRange}</p>
+                  <p className={`text-destructive text-sm mt-1 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>{errors.budgetRange}</p>
                 )}
               </div>
 
               {/* WhatsApp Number */}
               <div>
-                <label htmlFor="whatsappNumber" className="block text-sm font-medium text-foreground mb-2">
-                  WhatsApp Number *
+                <label htmlFor="whatsappNumber" className={`block text-sm font-medium text-foreground mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                  {t('leadForm.fields.whatsappNumber')} *
                 </label>
                 <input
                   type="tel"
@@ -230,16 +220,17 @@ const LeadForm = () => {
                     errors.whatsappNumber ? 'border-destructive' : 'border-border'
                   }`}
                   placeholder="+972 50 123 4567"
+                  dir="ltr"
                 />
                 {errors.whatsappNumber && (
-                  <p className="text-destructive text-sm mt-1">{errors.whatsappNumber}</p>
+                  <p className={`text-destructive text-sm mt-1 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>{errors.whatsappNumber}</p>
                 )}
               </div>
 
               {/* Instagram Username */}
               <div>
-                <label htmlFor="instagramUsername" className="block text-sm font-medium text-foreground mb-2">
-                  Instagram Username (optional)
+                <label htmlFor="instagramUsername" className={`block text-sm font-medium text-foreground mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                  {t('leadForm.fields.instagramUsername')}
                 </label>
                 <input
                   type="text"
@@ -249,13 +240,14 @@ const LeadForm = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   placeholder="@yourusername"
+                  dir="ltr"
                 />
               </div>
 
               {/* Message */}
               <div className="md:col-span-2">
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Message (optional)
+                <label htmlFor="message" className={`block text-sm font-medium text-foreground mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+                  {t('leadForm.fields.message')}
                 </label>
                 <textarea
                   id="message"
@@ -263,8 +255,9 @@ const LeadForm = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
-                  placeholder="Tell us more about your project..."
+                  className={`w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                  placeholder={t('leadForm.fields.messagePlaceholder')}
+                  dir={dir}
                 />
               </div>
             </div>
@@ -276,17 +269,17 @@ const LeadForm = () => {
               className="w-full btn-primary text-lg py-4 mt-8 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
-                'Sending...'
+                t('leadForm.submitting')
               ) : (
                 <>
-                  Send & Get My Plan
-                  <Send size={20} />
+                  {t('leadForm.submit')}
+                  <Send size={20} className={dir === 'rtl' ? 'rotate-180' : ''} />
                 </>
               )}
             </button>
 
             <p className="text-center text-sm text-muted-foreground mt-4">
-              We'll reply within 24 hours. No spam, ever.
+              {t('leadForm.replyNote')}
             </p>
           </form>
         </div>

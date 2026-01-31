@@ -1,6 +1,10 @@
 import { Star, Quote } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Testimonials = () => {
+  const { t } = useLanguage();
+  
+  // Testimonials are kept in English as they are client quotes
   const testimonials = [
     {
       name: 'Sarah Cohen',
@@ -45,13 +49,13 @@ const Testimonials = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
-            Testimonials
+            {t('testimonials.badge')}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            What our clients <span className="text-gradient">say</span>
+            {t('testimonials.title')} <span className="text-gradient">{t('testimonials.titleHighlight')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Don't just take our word for it — hear from businesses we've helped succeed.
+            {t('testimonials.subtitle')}
           </p>
         </div>
 
