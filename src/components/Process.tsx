@@ -1,43 +1,46 @@
 import { Phone, PenTool, Code, Gauge, Rocket, Clock } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Process = () => {
+  const { t } = useLanguage();
+  
   const steps = [
     {
       icon: Phone,
       number: '01',
-      title: 'Discovery Call',
-      description: 'We discuss your goals, requirements, and vision for the project.',
+      titleKey: 'process.steps.discovery.title',
+      descKey: 'process.steps.discovery.description',
     },
     {
       icon: PenTool,
       number: '02',
-      title: 'Design',
-      description: 'Creating wireframes and visual designs tailored to your brand.',
+      titleKey: 'process.steps.design.title',
+      descKey: 'process.steps.design.description',
     },
     {
       icon: Code,
       number: '03',
-      title: 'Build',
-      description: 'Developing your solution with clean, scalable code.',
+      titleKey: 'process.steps.build.title',
+      descKey: 'process.steps.build.description',
     },
     {
       icon: Gauge,
       number: '04',
-      title: 'Optimize',
-      description: 'Testing, refining, and ensuring peak performance.',
+      titleKey: 'process.steps.optimize.title',
+      descKey: 'process.steps.optimize.description',
     },
     {
       icon: Rocket,
       number: '05',
-      title: 'Launch & Support',
-      description: 'Going live with ongoing maintenance and support.',
+      titleKey: 'process.steps.launch.title',
+      descKey: 'process.steps.launch.description',
     },
   ];
 
   const timelines = [
-    { type: 'Website', duration: '7–14 days' },
-    { type: 'E-commerce', duration: '14–30 days' },
-    { type: 'App MVP', duration: '30–60 days' },
+    { typeKey: 'process.timelineItems.website', duration: '7–14' },
+    { typeKey: 'process.timelineItems.ecommerce', duration: '14–30' },
+    { typeKey: 'process.timelineItems.appMvp', duration: '30–60' },
   ];
 
   return (
@@ -46,13 +49,13 @@ const Process = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
-            Our Process
+            {t('process.badge')}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            From idea to <span className="text-gradient">launch</span>
+            {t('process.title')} <span className="text-gradient">{t('process.titleHighlight')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A proven 5-step process designed to deliver results efficiently.
+            {t('process.subtitle')}
           </p>
         </div>
 
@@ -76,8 +79,8 @@ const Process = () => {
                     <step.icon size={28} className="text-primary" />
                   </div>
 
-                  <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
+                  <h3 className="text-lg font-bold text-foreground mb-2">{t(step.titleKey)}</h3>
+                  <p className="text-sm text-muted-foreground">{t(step.descKey)}</p>
                 </div>
               </div>
             ))}
@@ -89,7 +92,7 @@ const Process = () => {
           <div className="card-premium bg-gradient-primary p-8 md:p-10">
             <div className="flex items-center gap-3 mb-6">
               <Clock size={24} className="text-primary-foreground" />
-              <h3 className="text-xl font-bold text-primary-foreground">Typical Timelines</h3>
+              <h3 className="text-xl font-bold text-primary-foreground">{t('process.timelines')}</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {timelines.map((item, index) => (
@@ -97,8 +100,8 @@ const Process = () => {
                   key={index}
                   className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center"
                 >
-                  <p className="text-primary-foreground/80 text-sm mb-1">{item.type}</p>
-                  <p className="text-2xl font-bold text-primary-foreground">{item.duration}</p>
+                  <p className="text-primary-foreground/80 text-sm mb-1">{t(item.typeKey)}</p>
+                  <p className="text-2xl font-bold text-primary-foreground">{item.duration} days</p>
                 </div>
               ))}
             </div>

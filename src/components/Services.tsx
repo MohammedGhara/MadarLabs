@@ -1,36 +1,39 @@
 import { Globe, ShoppingCart, Smartphone, Calendar, LayoutDashboard, Palette } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Services = () => {
+  const { t } = useLanguage();
+  
   const services = [
     {
       icon: Globe,
-      title: 'Business Websites',
-      description: 'Turn visitors into leads with stunning, conversion-optimized websites.',
+      titleKey: 'services.items.websites.title',
+      descKey: 'services.items.websites.description',
     },
     {
       icon: ShoppingCart,
-      title: 'E-Commerce Stores',
-      description: 'Sell online easily with beautiful, secure shopping experiences.',
+      titleKey: 'services.items.ecommerce.title',
+      descKey: 'services.items.ecommerce.description',
     },
     {
       icon: Smartphone,
-      title: 'Mobile Apps',
-      description: 'iOS & Android solutions that your customers will love.',
+      titleKey: 'services.items.mobile.title',
+      descKey: 'services.items.mobile.description',
     },
     {
       icon: Calendar,
-      title: 'Booking & Ordering',
-      description: 'Automate client bookings and orders with smart systems.',
+      titleKey: 'services.items.booking.title',
+      descKey: 'services.items.booking.description',
     },
     {
       icon: LayoutDashboard,
-      title: 'Admin Dashboard & CRM',
-      description: 'Manage your business efficiently with custom dashboards.',
+      titleKey: 'services.items.dashboard.title',
+      descKey: 'services.items.dashboard.description',
     },
     {
       icon: Palette,
-      title: 'Branding & UI/UX',
-      description: 'Premium visual identity that sets you apart from competition.',
+      titleKey: 'services.items.branding.title',
+      descKey: 'services.items.branding.description',
     },
   ];
 
@@ -40,13 +43,13 @@ const Services = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
-            Our Services
+            {t('services.badge')}
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Everything you need to <span className="text-gradient">succeed online</span>
+            {t('services.title')} <span className="text-gradient">{t('services.titleHighlight')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From websites to mobile apps, we build digital solutions that drive real business results.
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -61,8 +64,8 @@ const Services = () => {
               <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                 <service.icon size={28} className="text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
-              <p className="text-muted-foreground">{service.description}</p>
+              <h3 className="text-xl font-bold text-foreground mb-3">{t(service.titleKey)}</h3>
+              <p className="text-muted-foreground">{t(service.descKey)}</p>
             </div>
           ))}
         </div>

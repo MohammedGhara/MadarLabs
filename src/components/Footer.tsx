@@ -1,16 +1,18 @@
 import { MapPin, Mail, Phone } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
+  const { t, dir } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const links = [
-    { href: '#services', label: 'Services' },
-    { href: '#portfolio', label: 'Portfolio' },
-    { href: '#process', label: 'Process' },
-    { href: '#pricing', label: 'Pricing' },
-    { href: '#testimonials', label: 'Reviews' },
-    { href: '#faq', label: 'FAQ' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#services', labelKey: 'nav.services' },
+    { href: '#portfolio', labelKey: 'nav.portfolio' },
+    { href: '#process', labelKey: 'nav.process' },
+    { href: '#pricing', labelKey: 'nav.pricing' },
+    { href: '#testimonials', labelKey: 'nav.reviews' },
+    { href: '#faq', labelKey: 'nav.faq' },
+    { href: '#contact', labelKey: 'nav.contact' },
   ];
 
   return (
@@ -28,8 +30,7 @@ const Footer = () => {
               </span>
             </a>
             <p className="text-background/70 max-w-md mb-6">
-              We build apps & websites that grow your business. From idea to launch — fast, clean,
-              and built to convert customers.
+              {t('footer.description')}
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -59,7 +60,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Quick Links</h3>
+            <h3 className="font-bold text-lg mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               {links.map((link) => (
                 <li key={link.href}>
@@ -67,7 +68,7 @@ const Footer = () => {
                     href={link.href}
                     className="text-background/70 hover:text-background transition-colors"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                   </a>
                 </li>
               ))}
@@ -76,13 +77,13 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Contact</h3>
+            <h3 className="font-bold text-lg mb-4">{t('footer.contact')}</h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
+              <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                 <MapPin size={20} className="text-accent flex-shrink-0 mt-0.5" />
                 <span className="text-background/70">Tel Aviv, Israel</span>
               </li>
-              <li className="flex items-start gap-3">
+              <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                 <Mail size={20} className="text-accent flex-shrink-0 mt-0.5" />
                 <a
                   href="mailto:hello@vertexagency.com"
@@ -91,11 +92,12 @@ const Footer = () => {
                   hello@vertexagency.com
                 </a>
               </li>
-              <li className="flex items-start gap-3">
+              <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                 <Phone size={20} className="text-accent flex-shrink-0 mt-0.5" />
                 <a
                   href="https://wa.me/972501234567"
                   className="text-background/70 hover:text-background transition-colors"
+                  dir="ltr"
                 >
                   +972 50 123 4567
                 </a>
@@ -107,14 +109,14 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-background/50 text-sm">
-            © {currentYear} VertexAgency. All rights reserved.
+            {t('footer.copyright').replace('{year}', currentYear.toString())}
           </p>
           <div className="flex items-center gap-6 text-sm">
             <a href="#" className="text-background/50 hover:text-background transition-colors">
-              Privacy Policy
+              {t('footer.privacyPolicy')}
             </a>
             <a href="#" className="text-background/50 hover:text-background transition-colors">
-              Terms of Service
+              {t('footer.termsOfService')}
             </a>
           </div>
         </div>
