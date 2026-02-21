@@ -29,19 +29,19 @@ const Header = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isScrolled
-          ? 'bg-background/80 backdrop-blur-xl shadow-lg shadow-foreground/5 border-b border-border/60'
+          ? 'bg-background/95 backdrop-blur-xl shadow-strong border-b border-primary/30'
           : 'bg-transparent'
       }`}
     >
       <div className="container-main">
         <nav className="flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-gradient-primary flex items-center justify-center">
+          <a href="#" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-gradient-primary flex items-center justify-center shadow-soft group-hover:shadow-strong group-hover:scale-110 transition-all duration-300">
               <span className="text-primary-foreground font-bold text-lg md:text-xl">V</span>
             </div>
             <span className="font-bold text-lg md:text-xl text-foreground">
-              Vertex<span className="text-gradient">Agency</span>
+              Vertex<span className="text-gradient">Tech</span>
             </span>
           </a>
 
@@ -51,7 +51,7 @@ const Header = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="relative inline-block pb-0.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                className="relative inline-block pb-0.5 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gradient-primary after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </a>

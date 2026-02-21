@@ -13,7 +13,7 @@ const FAQ = () => {
   const faqs = t('faq.items') as unknown as { question: string; answer: string }[];
 
   return (
-    <section id="faq" className="section-padding bg-secondary/30">
+    <section id="faq" className="section-padding bg-background">
       <div className="container-main">
         <ScrollRevealSection>
         {/* Section Header */}

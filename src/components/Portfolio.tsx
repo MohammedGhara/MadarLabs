@@ -51,7 +51,7 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="section-padding bg-secondary/30">
+    <section id="portfolio" className="section-padding bg-background">
       <div className="container-main">
         <ScrollRevealSection>
         {/* Section Header */}

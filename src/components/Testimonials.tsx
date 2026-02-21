@@ -11,7 +11,7 @@ const Testimonials = () => {
       name: 'Sarah Cohen',
       role: 'Owner, Bloom Café',
       content:
-        'VertexAgency transformed our online presence. Our ordering system increased revenue by 40% in the first month. The team was professional and delivered ahead of schedule.',
+        'VertexTech transformed our online presence. Our ordering system increased revenue by 40% in the first month. The team was professional and delivered ahead of schedule.',
       rating: 5,
     },
     {
@@ -88,7 +88,7 @@ const Testimonials = () => {
               {/* Author */}
               <div className="flex items-center gap-2 sm:gap-3">
                 <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                  <span className="text-primary-foreground font-bold text-xs sm:text-base">
+                  <span className="text-white font-bold text-xs sm:text-base">
                     {testimonial.name.charAt(0)}
                   </span>
                 </div>

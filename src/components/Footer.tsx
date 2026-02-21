@@ -18,22 +18,22 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-foreground text-background overflow-hidden">
-      {/* Subtle gradient accent at top */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+    <footer className="relative bg-background text-foreground overflow-hidden border-t border-border/50">
+      {/* Strong gradient accent at top */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
       <div className="container-main section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center">
+            <a href="#" className="flex items-center gap-2 mb-4 group">
+              <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center shadow-soft group-hover:shadow-strong group-hover:scale-110 transition-all duration-300">
                 <span className="text-primary-foreground font-bold text-xl">V</span>
               </div>
-              <span className="font-bold text-xl">
-                Vertex<span className="text-accent">Agency</span>
+              <span className="font-bold text-xl text-foreground">
+                Vertex<span className="text-gradient">Tech</span>
               </span>
             </a>
-            <p className="text-background/70 max-w-md mb-6">
+            <p className="text-muted-foreground max-w-md mb-6">
               {t('footer.description')}
             </p>
             <div className="flex items-center gap-4">
@@ -41,7 +41,7 @@ const Footer = () => {
                 href={config.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 hover:scale-110 hover:shadow-soft transition-all duration-300"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,7 @@ const Footer = () => {
                 href={getWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center hover:bg-background/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 hover:scale-110 hover:shadow-soft transition-all duration-300"
                 aria-label="WhatsApp"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -64,13 +64,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4">{t('footer.quickLinks')}</h3>
+            <h3 className="font-bold text-lg mb-4 text-foreground">{t('footer.quickLinks')}</h3>
             <ul className="space-y-3">
               {links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-background/70 hover:text-background transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     {t(link.labelKey)}
                   </a>
@@ -81,26 +81,26 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-4">{t('footer.contact')}</h3>
+            <h3 className="font-bold text-lg mb-4 text-foreground">{t('footer.contact')}</h3>
             <ul className="space-y-4">
               <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                <MapPin size={20} className="text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-background/70">Tel Aviv, Israel</span>
+                <MapPin size={20} className="text-primary flex-shrink-0 mt-0.5" />
+                <span className="text-muted-foreground">Tel Aviv, Israel</span>
               </li>
               <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                <Mail size={20} className="text-accent flex-shrink-0 mt-0.5" />
+                <Mail size={20} className="text-primary flex-shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${config.email}`}
-                  className="text-background/70 hover:text-background transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {config.email}
                 </a>
               </li>
               <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                <Phone size={20} className="text-accent flex-shrink-0 mt-0.5" />
+                <Phone size={20} className="text-primary flex-shrink-0 mt-0.5" />
                 <a
                   href={getWhatsAppLink()}
-                  className="text-background/70 hover:text-background transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                   dir="ltr"
                 >
                   +{config.whatsappNumber.length >= 12
@@ -113,15 +113,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-background/50 text-sm">
+        <div className="border-t border-border/50 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-muted-foreground text-sm">
             {t('footer.copyright').replace('{year}', currentYear.toString())}
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link to="/privacy" className="text-background/50 hover:text-background transition-colors">
+            <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors font-medium">
               {t('footer.privacyPolicy')}
             </Link>
-            <Link to="/terms" className="text-background/50 hover:text-background transition-colors">
+            <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors font-medium">
               {t('footer.termsOfService')}
             </Link>
           </div>

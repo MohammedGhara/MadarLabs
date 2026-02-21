@@ -37,7 +37,7 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-xl font-semibold text-foreground mb-3">2. Services</h2>
               <p>
-                VertexAgency provides web development, mobile app development, e-commerce solutions, and related
+                VertexTech provides web development, mobile app development, e-commerce solutions, and related
                 digital services. Specific scope, deliverables, and timelines are defined in individual project
                 agreements or quotes.
               </p>

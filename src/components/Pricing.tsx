@@ -27,7 +27,7 @@ const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="section-padding bg-secondary/30">
+    <section id="pricing" className="section-padding bg-background">
       <div className="container-main">
         <ScrollRevealSection>
         {/* Section Header */}

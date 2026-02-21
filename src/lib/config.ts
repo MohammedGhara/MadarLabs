@@ -22,13 +22,13 @@ export const config = {
   instagramUrl: getEnv("VITE_INSTAGRAM_URL", "https://instagram.com/vertexagency"),
 
   /** Contact email */
-  email: getEnv("VITE_EMAIL", "VertexAgency@gmail.com"),
+  email: getEnv("VITE_EMAIL", "VertexTech@gmail.com"),
 
   /** Location for contact section */
   location: getEnv("VITE_LOCATION", "Israel"),
 
   /** Instagram handle for display */
-  instagramHandle: getEnv("VITE_INSTAGRAM_HANDLE", "@VertexAgency"),
+  instagramHandle: getEnv("VITE_INSTAGRAM_HANDLE", "@VertexTech"),
 
   /** Site URL for canonical / meta */
   siteUrl: getEnv("VITE_SITE_URL", typeof window !== "undefined" ? window.location.origin : "https://vertexagency.com"),

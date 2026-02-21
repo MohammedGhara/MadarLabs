@@ -73,7 +73,7 @@ const translations: Record<Language, Record<string, any>> = {
     },
     hero: {
       badge: 'Trusted by 50+ businesses',
-      headline: 'VertexAgency builds apps & websites that',
+      headline: 'VertexTech builds apps & websites that',
       headlineHighlight: 'grow your business.',
       subheadline: 'From idea to launch — fast, clean, and built to convert customers.',
       cta: 'Get a Free Consultation',
@@ -149,7 +149,7 @@ const translations: Record<Language, Record<string, any>> = {
         ecommerce: {
           title: 'E-Commerce Store',
           category: 'Retail',
-          result: '$50K+ monthly revenue',
+          result: '3x sales growth',
         },
         service: {
           title: 'Service Business Site',
@@ -347,7 +347,7 @@ const translations: Record<Language, Record<string, any>> = {
       description: 'We build apps & websites that grow your business. From idea to launch — fast, clean, and built to convert customers.',
       quickLinks: 'Quick Links',
       contact: 'Contact',
-      copyright: '© {year} VertexAgency. All rights reserved.',
+      copyright: '© {year} VertexTech. All rights reserved.',
       privacyPolicy: 'Privacy Policy',
       termsOfService: 'Terms of Service',
     },
@@ -365,7 +365,7 @@ const translations: Record<Language, Record<string, any>> = {
     },
     hero: {
       badge: 'موثوق من 50+ شركة',
-      headline: 'VertexAgency تبني تطبيقات ومواقع',
+      headline: 'VertexTech تبني تطبيقات ومواقع',
       headlineHighlight: 'تنمّي عملك.',
       subheadline: 'من الفكرة إلى الإطلاق — سريع، نظيف، ومصمم لتحويل العملاء.',
       cta: 'احصل على استشارة مجانية',
@@ -441,7 +441,7 @@ const translations: Record<Language, Record<string, any>> = {
         ecommerce: {
           title: 'متجر إلكتروني',
           category: 'التجزئة',
-          result: '50K$+ إيرادات شهرية',
+          result: 'نمو المبيعات 3x',
         },
         service: {
           title: 'موقع خدمات',
@@ -639,7 +639,7 @@ const translations: Record<Language, Record<string, any>> = {
       description: 'نبني تطبيقات ومواقع تنمّي عملك. من الفكرة إلى الإطلاق — سريع، نظيف، ومصمم لتحويل العملاء.',
       quickLinks: 'روابط سريعة',
       contact: 'اتصل بنا',
-      copyright: '© {year} VertexAgency. جميع الحقوق محفوظة.',
+      copyright: '© {year} VertexTech. جميع الحقوق محفوظة.',
       privacyPolicy: 'سياسة الخصوصية',
       termsOfService: 'شروط الخدمة',
     },
@@ -657,7 +657,7 @@ const translations: Record<Language, Record<string, any>> = {
     },
     hero: {
       badge: 'מהימן על 50+ עסקים',
-      headline: 'VertexAgency בונה אפליקציות ואתרים ש',
+      headline: 'VertexTech בונה אפליקציות ואתרים ש',
       headlineHighlight: 'מצמיחים את העסק שלך.',
       subheadline: 'מרעיון להשקה — מהיר, נקי, ובנוי להמיר לקוחות.',
       cta: 'קבל ייעוץ חינם',
@@ -733,7 +733,7 @@ const translations: Record<Language, Record<string, any>> = {
         ecommerce: {
           title: 'חנות אונליין',
           category: 'קמעונאות',
-          result: '$50K+ הכנסה חודשית',
+          result: 'גידול של פי 3 במכירות',
         },
         service: {
           title: 'אתר שירותים',
@@ -931,7 +931,7 @@ const translations: Record<Language, Record<string, any>> = {
       description: 'אנחנו בונים אפליקציות ואתרים שמצמיחים את העסק שלך. מרעיון להשקה — מהיר, נקי, ובנוי להמיר לקוחות.',
       quickLinks: 'קישורים מהירים',
       contact: 'צור קשר',
-      copyright: '© {year} VertexAgency. כל הזכויות שמורות.',
+      copyright: '© {year} VertexTech. כל הזכויות שמורות.',
       privacyPolicy: 'מדיניות פרטיות',
       termsOfService: 'תנאי שימוש',
     },

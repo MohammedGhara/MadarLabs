@@ -1,6 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import ImageReveal from '@/components/ImageReveal';
 import Services from '@/components/Services';
 import Portfolio from '@/components/Portfolio';
 import Process from '@/components/Process';
@@ -19,6 +20,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <ImageReveal />
         <Services />
         <Portfolio />
         <Process />

@@ -64,7 +64,7 @@ const Process = () => {
         {/* Timeline - Vertical on mobile, grid on desktop */}
         <div className="relative">
           {/* Desktop: horizontal connection line */}
-          <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-accent to-primary opacity-20" />
+          <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-primary/60 to-primary opacity-20" />
 
           {/* Mobile: vertical timeline with connecting line */}
           <div className="md:hidden">
@@ -76,7 +76,7 @@ const Process = () => {
                     <step.icon className="w-6 h-6 text-primary-foreground" />
                   </div>
                   {index < steps.length - 1 && (
-                    <div className="w-0.5 min-h-[40px] mt-2 bg-gradient-to-b from-primary/50 to-accent/50 rounded-full" />
+                    <div className="w-0.5 min-h-[40px] mt-2 bg-gradient-to-b from-primary/50 to-primary/30 rounded-full" />
                   )}
                 </div>
 
@@ -96,15 +96,15 @@ const Process = () => {
           <div className="hidden md:grid grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <div className="card-premium text-center h-full p-6">
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-primary flex items-center justify-center shadow-soft">
-                    <span className="text-xs font-bold text-primary-foreground">{step.number}</span>
+                <div className="card-premium text-center h-full p-6 border-2 border-border/60">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center shadow-strong ring-4 ring-background z-10">
+                    <span className="text-sm font-bold text-white">{step.number}</span>
                   </div>
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4 mt-4">
                     <step.icon className="w-7 h-7 text-primary" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">{t(step.titleKey)}</h3>
-                  <p className="text-sm text-muted-foreground">{t(step.descKey)}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t(step.descKey)}</p>
                 </div>
               </div>
             ))}
@@ -113,24 +113,24 @@ const Process = () => {
 
         {/* Timeline Estimates */}
         <div className="mt-10 sm:mt-16">
-          <div className="card-premium bg-gradient-primary p-6 sm:p-8 md:p-10 overflow-hidden relative">
+          <div className="card-premium bg-gradient-primary p-6 sm:p-8 md:p-10 overflow-hidden relative border-0 shadow-strong">
             {/* Decorative glow - mobile only */}
             <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full blur-3xl pointer-events-none md:hidden" />
             <div className="flex items-center gap-3 mb-4 sm:mb-6 relative z-10">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/20 flex items-center justify-center">
-                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white flex items-center justify-center shadow-strong ring-2 ring-primary/30">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               </div>
-              <h3 className="text-lg sm:text-xl font-bold text-primary-foreground">{t('process.timelines')}</h3>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-primary drop-shadow-lg">{t('process.timelines')}</h3>
             </div>
             {/* Mobile: vertical stack, Desktop: 3-column grid */}
             <div className="flex flex-col md:grid md:grid-cols-3 gap-3 md:gap-6 relative z-10">
               {timelines.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-between md:flex-col md:text-center gap-4 md:gap-0 bg-white/10 backdrop-blur-sm rounded-xl p-4 md:p-5 md:py-5"
+                  className="flex items-center justify-between md:flex-col md:text-center gap-4 md:gap-0 bg-white rounded-xl p-4 md:p-5 md:py-5 border-2 border-white/40 shadow-strong"
                 >
-                  <p className="text-primary-foreground/90 text-sm md:text-sm font-medium md:mb-1">{t(item.typeKey)}</p>
-                  <p className="text-xl md:text-2xl font-bold text-primary-foreground md:mt-0">{item.duration} days</p>
+                  <p className="text-foreground text-sm md:text-base font-semibold md:mb-2">{t(item.typeKey)}</p>
+                  <p className="text-2xl md:text-3xl font-bold text-primary md:mt-0">{item.duration} days</p>
                 </div>
               ))}
             </div>
