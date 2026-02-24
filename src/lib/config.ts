@@ -9,7 +9,7 @@ const getEnv = (key: string, fallback: string): string => {
 };
 
 export const config = {
-  /** Backend API base URL (no trailing slash) */
+  /** Backend API base URL for lead form (e.g. http://localhost:3001) */
   apiBaseUrl: getEnv("VITE_API_BASE_URL", ""),
 
   /** WhatsApp number for contact (digits only, e.g. 972526867838) */
@@ -19,10 +19,10 @@ export const config = {
   whatsappMessage: getEnv("VITE_WHATSAPP_MESSAGE", "Hi! I found you on your website and I'm interested in your services."),
 
   /** Instagram profile URL */
-  instagramUrl: getEnv("VITE_INSTAGRAM_URL", "https://instagram.com/vertexagency"),
+  instagramUrl: getEnv("VITE_INSTAGRAM_URL", "https://instagram.com/vertextech12"),
 
   /** Contact email */
-  email: getEnv("VITE_EMAIL", "VertexTech@gmail.com"),
+  email: getEnv("VITE_EMAIL", "VertexTech11@gmail.com"),
 
   /** Location for contact section */
   location: getEnv("VITE_LOCATION", "Israel"),
@@ -31,7 +31,7 @@ export const config = {
   instagramHandle: getEnv("VITE_INSTAGRAM_HANDLE", "@VertexTech"),
 
   /** Site URL for canonical / meta */
-  siteUrl: getEnv("VITE_SITE_URL", typeof window !== "undefined" ? window.location.origin : "https://vertexagency.com"),
+  siteUrl: getEnv("VITE_SITE_URL", typeof window !== "undefined" ? window.location.origin : "https://vertexTech.com"),
 } as const;
 
 /** Full WhatsApp link with optional pre-filled message */
@@ -40,3 +40,4 @@ export function getWhatsAppLink(message?: string): string {
   const encoded = encodeURIComponent(msg);
   return `https://wa.me/${config.whatsappNumber}${encoded ? `?text=${encoded}` : ""}`;
 }
+

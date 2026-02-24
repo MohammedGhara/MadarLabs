@@ -64,16 +64,18 @@ const LeadForm = () => {
       return;
     }
 
+    const payload = {
+      fullName: result.data.fullName,
+      businessType: result.data.businessType,
+      serviceNeeded: result.data.serviceNeeded,
+      budgetRange: result.data.budgetRange,
+      whatsappNumber: result.data.whatsappNumber,
+      instagramUsername: result.data.instagramUsername || undefined,
+      message: result.data.message || undefined,
+    };
+
     try {
-      await submitLead({
-        fullName: result.data.fullName,
-        businessType: result.data.businessType,
-        serviceNeeded: result.data.serviceNeeded,
-        budgetRange: result.data.budgetRange,
-        whatsappNumber: result.data.whatsappNumber,
-        instagramUsername: result.data.instagramUsername || undefined,
-        message: result.data.message || undefined,
-      });
+      await submitLead(payload);
       setIsSubmitted(true);
       setIsSubmitting(false);
       toast({ title: t('leadForm.success.title'), description: t('leadForm.success.message') });

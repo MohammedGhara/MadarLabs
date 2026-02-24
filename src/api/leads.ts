@@ -1,7 +1,7 @@
 /**
  * Lead/contact form API.
- * Backend should accept POST to /api/leads with JSON body.
- * Set VITE_API_BASE_URL in .env to your backend URL.
+ * Sends to your backend at VITE_API_BASE_URL/api/leads.
+ * Backend emails submissions to VertexTech11@gmail.com.
  */
 
 import { config } from "@/lib/config";
@@ -28,7 +28,7 @@ export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
   const baseUrl = config.apiBaseUrl?.trim();
   if (!baseUrl) {
     throw new Error(
-      "API URL not configured. Set VITE_API_BASE_URL in your .env file."
+      "API not configured. Set VITE_API_BASE_URL in .env (e.g. http://localhost:3001). Run the server with: cd server && npm install && npm start"
     );
   }
 
