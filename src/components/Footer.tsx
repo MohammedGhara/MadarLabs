@@ -27,10 +27,10 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-2 mb-4 group">
               <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center shadow-soft group-hover:shadow-strong group-hover:scale-110 transition-all duration-300">
-                <span className="text-primary-foreground font-bold text-xl">V</span>
+                <span className="text-primary-foreground font-bold text-xl">M</span>
               </div>
               <span className="font-bold text-xl text-foreground">
-                Vertex<span className="text-gradient">Tech</span>
+                Madar<span className="text-gradient">Labs</span>
               </span>
             </a>
             <p className="text-muted-foreground max-w-md mb-6">

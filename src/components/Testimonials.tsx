@@ -11,7 +11,7 @@ const Testimonials = () => {
       name: 'Sarah Cohen',
       role: 'Owner, Bloom Café',
       content:
-        'VertexTech transformed our online presence. Our ordering system increased revenue by 40% in the first month. The team was professional and delivered ahead of schedule.',
+        'MadarLabs transformed our online presence. Our ordering system increased revenue by 40% in the first month. The team was professional and delivered ahead of schedule.',
       rating: 5,
     },
     {

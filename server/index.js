@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || "VertexTech11@gmail.com";
+const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || "MadarLabs11@gmail.com";
 const GMAIL_USER = process.env.GMAIL_USER || RECIPIENT_EMAIL;
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 
@@ -60,9 +60,9 @@ app.post("/api/leads", async (req, res) => {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td align="center">
-                    <div style="width:64px;height:64px;background:rgba(255,255,255,0.25);border-radius:16px;margin:0 auto 20px;line-height:64px;font-size:28px;font-weight:700;color:#fff;">V</div>
+                    <div style="width:64px;height:64px;background:rgba(255,255,255,0.25);border-radius:16px;margin:0 auto 20px;line-height:64px;font-size:28px;font-weight:700;color:#fff;">M</div>
                     <p style="margin:0;font-size:10px;color:rgba(255,255,255,0.9);letter-spacing:3px;text-transform:uppercase;font-weight:600;">New Lead</p>
-                    <h1 style="margin:12px 0 0;font-size:28px;font-weight:700;color:#fff;letter-spacing:-0.5px;">VertexTech</h1>
+                    <h1 style="margin:12px 0 0;font-size:28px;font-weight:700;color:#fff;letter-spacing:-0.5px;">MadarLabs</h1>
                     <p style="margin:8px 0 0;font-size:14px;color:rgba(255,255,255,0.9);">Website inquiry received</p>
                   </td>
                 </tr>
@@ -111,7 +111,7 @@ app.post("/api/leads", async (req, res) => {
           </tr>
           <tr>
             <td style="background:#f8fafc;padding:20px 40px;text-align:center;font-size:12px;color:#64748b;border-top:1px solid #e2e8f0;">
-              VertexTech · Professional lead notification
+              MadarLabs · Professional lead notification
             </td>
           </tr>
         </table>
@@ -125,7 +125,7 @@ app.post("/api/leads", async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: `"🎯 VertexTech New Lead" <${GMAIL_USER}>`,
+      from: `"🎯 MadarLabs New Lead" <${GMAIL_USER}>`,
       to: RECIPIENT_EMAIL,
       subject: `New Lead: ${fullName} · ${serviceNeeded}`,
       text: textBody,

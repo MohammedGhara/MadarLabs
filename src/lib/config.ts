@@ -19,19 +19,19 @@ export const config = {
   whatsappMessage: getEnv("VITE_WHATSAPP_MESSAGE", "Hi! I found you on your website and I'm interested in your services."),
 
   /** Instagram profile URL */
-  instagramUrl: getEnv("VITE_INSTAGRAM_URL", "https://instagram.com/vertextech12"),
+  instagramUrl: getEnv("VITE_INSTAGRAM_URL", "https://instagram.com/madarlabs"),
 
   /** Contact email */
-  email: getEnv("VITE_EMAIL", "VertexTech11@gmail.com"),
+  email: getEnv("VITE_EMAIL", "MadarLabs11@gmail.com"),
 
   /** Location for contact section */
   location: getEnv("VITE_LOCATION", "Israel"),
 
   /** Instagram handle for display */
-  instagramHandle: getEnv("VITE_INSTAGRAM_HANDLE", "@VertexTech"),
+  instagramHandle: getEnv("VITE_INSTAGRAM_HANDLE", "@MadarLabs"),
 
   /** Site URL for canonical / meta */
-  siteUrl: getEnv("VITE_SITE_URL", typeof window !== "undefined" ? window.location.origin : "https://vertexTech.com"),
+  siteUrl: getEnv("VITE_SITE_URL", typeof window !== "undefined" ? window.location.origin : "https://madarlabs.com"),
 } as const;
 
 /** Full WhatsApp link with optional pre-filled message */

@@ -1,6 +1,6 @@
 # Backend API Specification
 
-This document describes the API your backend must implement for the Vertex Agency frontend to work fully.
+This document describes the API your backend must implement for the MadarLabs frontend to work fully.
 
 ## Lead Form Submission
 

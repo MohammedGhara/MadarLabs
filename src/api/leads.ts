@@ -1,7 +1,7 @@
 /**
  * Lead/contact form API.
  * Sends to your backend at VITE_API_BASE_URL/api/leads.
- * Backend emails submissions to VertexTech11@gmail.com.
+ * Backend emails submissions to the configured recipient (see server env).
  */
 
 import { config } from "@/lib/config";
