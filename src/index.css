@@ -337,6 +337,9 @@
   .animate-reveal-delay-3 { transition-delay: 0.24s; }
   .animate-reveal-delay-4 { transition-delay: 0.32s; }
   .animate-reveal-delay-5 { transition-delay: 0.4s; }
+  .animate-reveal-delay-6 { transition-delay: 0.48s; }
+  .animate-reveal-delay-7 { transition-delay: 0.56s; }
+  .animate-reveal-delay-8 { transition-delay: 0.64s; }
 
   /* Gradient animation for hero text */
   .animate-gradient {
@@ -379,6 +382,196 @@
 
   .shadow-strong {
     box-shadow: var(--shadow-strong);
+  }
+
+  /* Portfolio section — premium depth & motion (prefers-reduced-motion below) */
+  .portfolio-section {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .portfolio-card-premium {
+    position: relative;
+    border-radius: 1.5rem;
+    transition:
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.4s ease;
+    box-shadow:
+      0 4px 6px -1px hsl(222 47% 11% / 0.05),
+      0 12px 40px -12px hsl(222 47% 11% / 0.12),
+      0 0 0 1px hsl(var(--border) / 0.65);
+  }
+
+  .portfolio-card-premium::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(221 83% 53% / 0.22),
+      hsl(187 85% 42% / 0.08) 45%,
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.65;
+    transition: opacity 0.45s ease;
+  }
+
+  .portfolio-card-premium:hover::before {
+    opacity: 1;
+  }
+
+  .portfolio-card-premium:hover {
+    transform: translateY(-10px) scale(1.008);
+    box-shadow:
+      0 24px 56px -16px hsl(221 83% 53% / 0.22),
+      0 0 0 1px hsl(221 83% 53% / 0.14),
+      0 0 80px -24px hsl(187 85% 42% / 0.15);
+    border-color: hsl(221 83% 53% / 0.22);
+  }
+
+  .portfolio-card-media {
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .portfolio-card-premium:hover .portfolio-card-media {
+    transform: scale(1.06);
+  }
+
+  .portfolio-shine {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .portfolio-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-120%) skewX(-18deg);
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      hsl(0 0% 100% / 0) 40%,
+      hsl(0 0% 100% / 0.18) 50%,
+      hsl(0 0% 100% / 0) 60%,
+      transparent 100%
+    );
+    opacity: 0;
+  }
+
+  .portfolio-card-premium:hover .portfolio-shine::after {
+    animation: portfolioShineSweep 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .portfolio-icon-shell {
+    transition:
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.5s ease,
+      border-color 0.5s ease,
+      background-color 0.5s ease;
+  }
+
+  .portfolio-card-premium:hover .portfolio-icon-shell {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 16px 40px -12px hsl(0 0% 0% / 0.35);
+  }
+
+  .portfolio-cta-glow {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease,
+      background-color 0.35s ease;
+  }
+
+  .portfolio-cta-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent,
+      hsl(221 83% 53% / 0.12),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .portfolio-card-premium:hover .portfolio-cta-glow::before {
+    transform: translateX(100%);
+  }
+
+  @keyframes portfolioShineSweep {
+    0% {
+      transform: translateX(-120%) skewX(-18deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(120%) skewX(-18deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes portfolioOrbDrift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(12px, -18px) scale(1.05);
+    }
+  }
+
+  .portfolio-orb {
+    animation: portfolioOrbDrift 18s ease-in-out infinite;
+  }
+
+  .portfolio-orb-slow {
+    animation: portfolioOrbDrift 24s ease-in-out infinite reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portfolio-card-premium,
+    .portfolio-card-premium:hover {
+      transform: none;
+      transition-duration: 0.01ms;
+    }
+
+    .portfolio-card-premium:hover .portfolio-card-media {
+      transform: none;
+    }
+
+    .portfolio-card-premium:hover .portfolio-icon-shell {
+      transform: none;
+    }
+
+    .portfolio-card-premium:hover .portfolio-shine::after {
+      animation: none;
+    }
+
+    .portfolio-orb,
+    .portfolio-orb-slow {
+      animation: none;
+    }
+
+    .portfolio-card-premium:hover .portfolio-cta-glow::before {
+      transform: none;
+    }
   }
 
   /* Premium card hover */

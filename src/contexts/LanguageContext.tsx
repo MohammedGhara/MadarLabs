@@ -120,6 +120,7 @@ const translations: Record<Language, Record<string, any>> = {
     },
     portfolio: {
       badge: 'Our Work',
+      stripLabel: 'Selected work',
       title: 'Projects that',
       titleHighlight: 'deliver results',
       subtitle: "See how we've helped businesses like yours grow with custom digital solutions.",
@@ -129,31 +130,43 @@ const translations: Record<Language, Record<string, any>> = {
         restaurant: {
           title: 'Restaurant Ordering Site',
           category: 'Food & Beverage',
+          description:
+            'Custom ordering flow with menu highlights, upsells, and a delivery-ready checkout experience.',
           result: '40% increase in online orders',
         },
         clinic: {
           title: 'Clinic Booking System',
           category: 'Healthcare',
+          description:
+            'Online booking, automated reminders, and calendar sync to reduce missed appointments.',
           result: '60% reduction in no-shows',
         },
         gym: {
           title: 'Fitness Gym App',
           category: 'Health & Fitness',
+          description:
+            'Member hub with schedules, progress tracking, and engagement tools members actually use.',
           result: '3x member engagement',
         },
         realEstate: {
           title: 'Real Estate Lead Funnel',
           category: 'Real Estate',
+          description:
+            'Lead capture and qualification tuned for property inquiries and faster follow-up.',
           result: '150+ qualified leads/month',
         },
         ecommerce: {
           title: 'E-Commerce Store',
           category: 'Retail',
+          description:
+            'Fast catalog and checkout with a conversion-first shopping experience across devices.',
           result: '3x sales growth',
         },
         service: {
           title: 'Service Business Site',
           category: 'Professional Services',
+          description:
+            'Clear service tiers, social proof, and frictionless contact paths that drive inquiries.',
           result: '5x more inquiries',
         },
       },
@@ -412,6 +425,7 @@ const translations: Record<Language, Record<string, any>> = {
     },
     portfolio: {
       badge: 'أعمالنا',
+      stripLabel: 'أعمال مختارة',
       title: 'مشاريع تحقق',
       titleHighlight: 'نتائج',
       subtitle: 'شاهد كيف ساعدنا شركات مثل شركتك على النمو بحلول رقمية مخصصة.',
@@ -421,31 +435,43 @@ const translations: Record<Language, Record<string, any>> = {
         restaurant: {
           title: 'موقع طلبات المطعم',
           category: 'الطعام والمشروبات',
+          description:
+            'تجربة طلب مخصصة مع عرض القائمة والعروض الإضافية ودفع جاهز للتوصيل.',
           result: '40% زيادة في الطلبات',
         },
         clinic: {
           title: 'نظام حجز العيادة',
           category: 'الرعاية الصحية',
+          description:
+            'حجز عبر الإنترنت، تذكيرات تلقائية، ومزامنة التقويم لتقليل الغياب.',
           result: '60% تقليل في عدم الحضور',
         },
         gym: {
           title: 'تطبيق صالة الرياضة',
           category: 'الصحة واللياقة',
+          description:
+            'مركز للأعضاء مع الجداول وتتبع التقدم وأدوات تفاعل فعّالة.',
           result: '3x تفاعل الأعضاء',
         },
         realEstate: {
           title: 'قمع العقارات',
           category: 'العقارات',
+          description:
+            'جذب وتأهيل العملاء المحتملين مع متابعة أسرع لاستفسارات العقارات.',
           result: '150+ عميل محتمل شهرياً',
         },
         ecommerce: {
           title: 'متجر إلكتروني',
           category: 'التجزئة',
+          description:
+            'كتالوج سريع ودفع سلس مع تجربة تسوق تركز على التحويل.',
           result: 'نمو المبيعات 3x',
         },
         service: {
           title: 'موقع خدمات',
           category: 'الخدمات المهنية',
+          description:
+            'عرض خدمات واضح، إثبات اجتماعي، ومسارات تواصل سلسة تزيد الاستفسارات.',
           result: '5x استفسارات أكثر',
         },
       },
@@ -704,6 +730,7 @@ const translations: Record<Language, Record<string, any>> = {
     },
     portfolio: {
       badge: 'העבודות שלנו',
+      stripLabel: 'עבודות נבחרות',
       title: 'פרויקטים ש',
       titleHighlight: 'מניבים תוצאות',
       subtitle: 'ראה איך עזרנו לעסקים כמו שלך לצמוח עם פתרונות דיגיטליים מותאמים.',
@@ -713,31 +740,43 @@ const translations: Record<Language, Record<string, any>> = {
         restaurant: {
           title: 'אתר הזמנות למסעדה',
           category: 'מזון ומשקאות',
+          description:
+            'זרימת הזמנה מותאמת עם תפריט, מבצעים נלווים ותשלום מוכן למשלוחים.',
           result: '40% עלייה בהזמנות',
         },
         clinic: {
           title: 'מערכת הזמנות לקליניקה',
           category: 'בריאות',
+          description:
+            'הזמנות מקוונות, תזכורות אוטומטיות וסנכרון יומן להפחתת אי-הגעות.',
           result: '60% פחות אי-הגעות',
         },
         gym: {
           title: 'אפליקציית חדר כושר',
           category: 'בריאות וכושר',
+          description:
+            'מרכז חברים עם לוחות זמנים, מעקב התקדמות וכלים שמגבירים מעורבות.',
           result: 'x3 מעורבות חברים',
         },
         realEstate: {
           title: 'משפך לידים לנדל"ן',
           category: 'נדל"ן',
+          description:
+            'לכידה ואיכות לידים עם מענה מהיר לפניות נדל"ן.',
           result: '150+ לידים איכותיים בחודש',
         },
         ecommerce: {
           title: 'חנות אונליין',
           category: 'קמעונאות',
+          description:
+            'קטלוג ותשלום מהירים עם חוויית קנייה ממוקדת המרה.',
           result: 'גידול של פי 3 במכירות',
         },
         service: {
           title: 'אתר שירותים',
           category: 'שירותים מקצועיים',
+          description:
+            'חבילות שירות ברורות, הוכחות חברתיות ונתיבי יצירת קשר חלקים.',
           result: 'x5 יותר פניות',
         },
       },
