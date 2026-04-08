@@ -55,14 +55,14 @@ const Portfolio = () => {
       <div className="container-main">
         <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-20">
-          <span className="animate-reveal inline-block px-5 py-2.5 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-5">
+        <div className="text-center mb-14 sm:mb-20">
+          <span className="animate-reveal section-badge mb-6">
             {t('portfolio.badge')}
           </span>
-          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl xl:text-[3rem] font-bold text-foreground mb-5 text-balance tracking-tight">
             {t('portfolio.title')} <span className="text-gradient">{t('portfolio.titleHighlight')}</span>
           </h2>
-          <p className="animate-reveal animate-reveal-delay-2 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="animate-reveal animate-reveal-delay-2 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t('portfolio.subtitle')}
           </p>
         </div>
@@ -77,11 +77,12 @@ const Portfolio = () => {
               }`}
             >
               {/* Project Image Placeholder */}
-              <div className={`h-28 sm:h-48 bg-gradient-to-br ${project.color} relative overflow-hidden`}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <project.icon className="w-10 h-10 sm:w-16 sm:h-16 text-white/30" />
+              <div className={`h-28 sm:h-48 bg-gradient-to-br ${project.color} relative overflow-hidden group-hover:brightness-[1.05] transition-[filter] duration-500`}>
+                <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                  <project.icon className="w-10 h-10 sm:w-16 sm:h-16 text-white/35 drop-shadow-sm" />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-white/5" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-white/10 to-transparent" />
               </div>
 
               {/* Project Info */}

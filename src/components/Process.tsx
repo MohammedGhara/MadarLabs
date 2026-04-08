@@ -45,18 +45,19 @@ const Process = () => {
   ];
 
   return (
-    <section id="process" className="section-padding bg-background">
-      <div className="container-main">
+    <section id="process" className="section-padding bg-section-muted relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_100%_0%,hsl(187_85%_42%/0.06),transparent)] pointer-events-none" />
+      <div className="container-main relative">
         <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-20">
-          <span className="animate-reveal inline-block px-5 py-2.5 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-5">
+        <div className="text-center mb-14 sm:mb-20">
+          <span className="animate-reveal section-badge mb-6">
             {t('process.badge')}
           </span>
-          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl xl:text-[3rem] font-bold text-foreground mb-5 text-balance tracking-tight">
             {t('process.title')} <span className="text-gradient">{t('process.titleHighlight')}</span>
           </h2>
-          <p className="animate-reveal animate-reveal-delay-2 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="animate-reveal animate-reveal-delay-2 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t('process.subtitle')}
           </p>
         </div>

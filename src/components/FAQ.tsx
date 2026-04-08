@@ -13,18 +13,18 @@ const FAQ = () => {
   const faqs = t('faq.items') as unknown as { question: string; answer: string }[];
 
   return (
-    <section id="faq" className="section-padding bg-background">
+    <section id="faq" className="section-padding bg-section-muted">
       <div className="container-main">
         <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-20">
-          <span className="animate-reveal inline-block px-5 py-2.5 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-5">
+        <div className="text-center mb-14 sm:mb-20">
+          <span className="animate-reveal section-badge mb-6">
             {t('faq.badge')}
           </span>
-          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl xl:text-[3rem] font-bold text-foreground mb-5 text-balance tracking-tight">
             {t('faq.title')} <span className="text-gradient">{t('faq.titleHighlight')}</span>
           </h2>
-          <p className="animate-reveal animate-reveal-delay-2 text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
+          <p className="animate-reveal animate-reveal-delay-2 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
             {t('faq.subtitle')}
           </p>
         </div>
@@ -36,7 +36,7 @@ const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-card rounded-2xl border border-border/50 px-6 shadow-card overflow-hidden"
+                className="bg-card rounded-2xl border border-border/60 px-6 shadow-card overflow-hidden transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
               >
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
                   {faq.question}

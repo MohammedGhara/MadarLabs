@@ -89,8 +89,8 @@ const LeadForm = () => {
   const services = t('leadForm.services') as unknown as string[];
   const budgetRanges = t('leadForm.budgetRanges') as unknown as string[];
 
-  const inputBase = `w-full px-4 py-3 text-sm rounded-xl border bg-background/50 text-foreground placeholder:text-muted-foreground/70 
-    focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all duration-200 
+  const inputBase = `w-full px-4 py-3.5 text-sm rounded-xl border border-border/80 bg-background/80 text-foreground placeholder:text-muted-foreground/65 shadow-sm
+    focus:outline-none focus:ring-2 focus:ring-primary/25 focus:border-primary/40 focus:shadow-md transition-all duration-300 ease-out
     ${dir === 'rtl' ? 'text-right' : 'text-left'}`;
   const inputError = 'border-destructive focus:ring-destructive/30 focus:border-destructive';
   const labelBase = `block text-sm font-semibold text-foreground/90 mb-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`;
@@ -121,12 +121,12 @@ const LeadForm = () => {
       <div className="container-main relative">
         <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-10 sm:mb-12">
-          <span className="animate-reveal inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-5">
-            <Sparkles className="w-4 h-4" />
+        <div className="text-center mb-12 sm:mb-14">
+          <span className="animate-reveal section-badge mb-6 inline-flex items-center gap-2 !normal-case !tracking-normal">
+            <Sparkles className="w-4 h-4 opacity-90" />
             {t('leadForm.badge')}
           </span>
-          <h2 className="animate-reveal animate-reveal-delay-1 text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-3 tracking-tight text-balance">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-bold text-foreground mb-4 tracking-tight text-balance">
             {t('leadForm.title')}{' '}
             <span className="text-gradient">{t('leadForm.titleHighlight')}</span>
           </h2>

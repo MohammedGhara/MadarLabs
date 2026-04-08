@@ -2,8 +2,8 @@ import { useEffect, useRef, type ReactNode } from 'react';
 
 const observerOptions: IntersectionObserverInit = {
   root: null,
-  rootMargin: '0px 0px -60px 0px',
-  threshold: 0.08,
+  rootMargin: '0px 0px -48px 0px',
+  threshold: 0.06,
 };
 
 interface ScrollRevealSectionProps {

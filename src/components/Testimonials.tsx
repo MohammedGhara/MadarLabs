@@ -45,18 +45,19 @@ const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="section-padding bg-background">
-      <div className="container-main">
+    <section id="testimonials" className="section-padding bg-background relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,hsl(221_83%_53%/0.05),transparent)] pointer-events-none" />
+      <div className="container-main relative">
         <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-20">
-          <span className="animate-reveal inline-block px-5 py-2.5 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-5">
+        <div className="text-center mb-14 sm:mb-20">
+          <span className="animate-reveal section-badge mb-6">
             {t('testimonials.badge')}
           </span>
-          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl xl:text-[3rem] font-bold text-foreground mb-5 text-balance tracking-tight">
             {t('testimonials.title')} <span className="text-gradient">{t('testimonials.titleHighlight')}</span>
           </h2>
-          <p className="animate-reveal animate-reveal-delay-2 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="animate-reveal animate-reveal-delay-2 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t('testimonials.subtitle')}
           </p>
         </div>

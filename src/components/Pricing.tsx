@@ -31,14 +31,14 @@ const Pricing = () => {
       <div className="container-main">
         <ScrollRevealSection>
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-20">
-          <span className="animate-reveal inline-block px-5 py-2.5 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-5">
+        <div className="text-center mb-14 sm:mb-20">
+          <span className="animate-reveal section-badge mb-6">
             {t('pricing.badge')}
           </span>
-          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="animate-reveal animate-reveal-delay-1 text-3xl md:text-4xl lg:text-5xl xl:text-[3rem] font-bold text-foreground mb-5 text-balance tracking-tight">
             {t('pricing.title')} <span className="text-gradient">{t('pricing.titleHighlight')}</span>
           </h2>
-          <p className="animate-reveal animate-reveal-delay-2 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="animate-reveal animate-reveal-delay-2 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t('pricing.subtitle')}
           </p>
         </div>
@@ -50,12 +50,12 @@ const Pricing = () => {
             return (
               <div
                 key={index}
-                className={`animate-reveal relative rounded-xl sm:rounded-2xl p-5 sm:p-8 card-hover-lift ${
+                className={`animate-reveal relative rounded-2xl sm:rounded-3xl p-5 sm:p-8 card-hover-lift ${
                   index === 0 ? 'animate-reveal-delay-2' : index === 1 ? 'animate-reveal-delay-3' : 'animate-reveal-delay-4'
                 } ${
                   plan.popular
-                    ? 'bg-gradient-primary shadow-elevated'
-                    : 'bg-card shadow-card border border-border/50'
+                    ? 'bg-gradient-primary shadow-elevated ring-2 ring-white/30 ring-offset-2 ring-offset-background md:scale-[1.02] z-[1]'
+                    : 'bg-card shadow-card border border-border/60'
                 }`}
               >
                 {/* Popular Badge */}

@@ -18,9 +18,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-background text-foreground overflow-hidden border-t border-border/50">
-      {/* Strong gradient accent at top */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+    <footer className="relative bg-section-muted text-foreground overflow-hidden border-t border-border/60">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="container-main section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
@@ -70,7 +69,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-0.5"
                   >
                     {t(link.labelKey)}
                   </a>
@@ -91,7 +90,7 @@ const Footer = () => {
                 <Mail size={20} className="text-primary flex-shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${config.email}`}
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
                   {config.email}
                 </a>
@@ -100,7 +99,7 @@ const Footer = () => {
                 <Phone size={20} className="text-primary flex-shrink-0 mt-0.5" />
                 <a
                   href={getWhatsAppLink()}
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300"
                   dir="ltr"
                 >
                   +{config.whatsappNumber.length >= 12

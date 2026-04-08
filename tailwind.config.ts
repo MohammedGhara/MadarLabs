@@ -17,6 +17,10 @@ export default {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
         display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
       },
+      letterSpacing: {
+        tighter: '-0.04em',
+        tight: '-0.025em',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -105,6 +109,14 @@ export default {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        pageEnter: {
+          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.98)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -113,6 +125,12 @@ export default {
         "slide-up": "slideUp 0.6s ease-out forwards",
         "fade-in-up": "fadeInUp 0.6s ease-out forwards",
         shimmer: "shimmer 2s linear infinite",
+        "page-enter": "pageEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "scale-in": "scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both",
+      },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "out-soft": "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },

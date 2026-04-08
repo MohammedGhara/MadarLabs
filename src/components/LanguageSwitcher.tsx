@@ -13,14 +13,24 @@ const languages: { code: Language; label: string; flag: string }[] = [
   { code: 'he', label: 'עברית', flag: '🇮🇱' },
 ];
 
-const LanguageSwitcher = () => {
+interface LanguageSwitcherProps {
+  /** Light icon/text for use over dark hero video */
+  variant?: 'default' | 'onDark';
+}
+
+const LanguageSwitcher = ({ variant = 'default' }: LanguageSwitcherProps) => {
   const { language, setLanguage } = useLanguage();
   
   const currentLang = languages.find(l => l.code === language);
 
+  const triggerClass =
+    variant === 'onDark'
+      ? 'flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-white/90 hover:text-white hover:bg-white/10 transition-colors focus:outline-none'
+      : 'flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-colors focus:outline-none';
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-primary/5 transition-colors focus:outline-none">
+      <DropdownMenuTrigger className={triggerClass}>
         <Globe size={18} />
         <span className="hidden sm:inline">{currentLang?.flag}</span>
       </DropdownMenuTrigger>

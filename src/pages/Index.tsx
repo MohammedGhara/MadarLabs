@@ -16,7 +16,7 @@ const Index = () => {
   const { dir } = useLanguage();
   
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased" dir={dir}>
+    <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary/15 selection:text-foreground" dir={dir}>
       <Header />
       <main>
         <Hero />
