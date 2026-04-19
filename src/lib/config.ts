@@ -22,7 +22,7 @@ export const config = {
   instagramUrl: getEnv("VITE_INSTAGRAM_URL", "https://instagram.com/madarlabs"),
 
   /** Contact email */
-  email: getEnv("VITE_EMAIL", "MadarLabs11@gmail.com"),
+  email: getEnv("VITE_EMAIL", "madarlabs0@gmail.com"),
 
   /** Location for contact section */
   location: getEnv("VITE_LOCATION", "Israel"),

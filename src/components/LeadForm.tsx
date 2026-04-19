@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Send, CheckCircle2, Mail, MapPin, Sparkles, User, Briefcase, MessageCircle } from 'lucide-react';
+import { Send, CheckCircle2, Mail, MapPin, Sparkles, User, Briefcase, MessageCircle, FileText } from 'lucide-react';
 import ScrollRevealSection from './ScrollRevealSection';
 import { z } from 'zod';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -8,23 +8,48 @@ import { submitLead } from '@/api/leads';
 import { config, getWhatsAppLink } from '@/lib/config';
 
 const LeadForm = () => {
-  const { t, dir } = useLanguage();
+  const { t: tRaw, dir } = useLanguage();
+  /** String leaf values only — do not use for keys that resolve to arrays/objects (e.g. leadForm.services). */
+  const t = (key: string) => {
+    const v = tRaw(key);
+    if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') return String(v);
+    return '';
+  };
   const { toast } = useToast();
+
+  const serviceOptions: string[] = Array.isArray(tRaw('leadForm.services'))
+    ? (tRaw('leadForm.services') as string[])
+    : [];
+  const budgetOptions: string[] = Array.isArray(tRaw('leadForm.budgetRanges'))
+    ? (tRaw('leadForm.budgetRanges') as string[])
+    : [];
 
   const leadFormSchema = z.object({
     fullName: z.string().trim().min(2, t('leadForm.errors.nameRequired')).max(100),
+    email: z
+      .string()
+      .trim()
+      .min(1, t('leadForm.errors.emailRequired'))
+      .email({ message: t('leadForm.errors.emailInvalid') }),
+    subject: z.string().trim().min(3, t('leadForm.errors.subjectRequired')).max(200),
     businessType: z.string().trim().min(2, t('leadForm.errors.businessTypeRequired')).max(100),
     serviceNeeded: z.string().min(1, t('leadForm.errors.serviceRequired')),
     budgetRange: z.string().min(1, t('leadForm.errors.budgetRequired')),
     whatsappNumber: z.string().trim().min(10, t('leadForm.errors.whatsappRequired')).max(20),
     instagramUsername: z.string().trim().max(50).optional(),
-    message: z.string().trim().max(500).optional(),
+    message: z
+      .string()
+      .trim()
+      .min(10, t('leadForm.errors.messageMin'))
+      .max(5000, t('leadForm.errors.messageMax')),
   });
 
   type LeadFormData = z.infer<typeof leadFormSchema>;
 
   const [formData, setFormData] = useState<LeadFormData>({
     fullName: '',
+    email: '',
+    subject: '',
     businessType: '',
     serviceNeeded: '',
     budgetRange: '',
@@ -66,12 +91,14 @@ const LeadForm = () => {
 
     const payload = {
       fullName: result.data.fullName,
+      email: result.data.email,
+      subject: result.data.subject,
       businessType: result.data.businessType,
       serviceNeeded: result.data.serviceNeeded,
       budgetRange: result.data.budgetRange,
       whatsappNumber: result.data.whatsappNumber,
       instagramUsername: result.data.instagramUsername || undefined,
-      message: result.data.message || undefined,
+      message: result.data.message,
     };
 
     try {
@@ -80,14 +107,23 @@ const LeadForm = () => {
       setIsSubmitting(false);
       toast({ title: t('leadForm.success.title'), description: t('leadForm.success.message') });
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
-      toast({ title: 'Error', description: message, variant: 'destructive' });
+      const fallback = String(t('leadForm.toastGenericError'));
+      const raw = err instanceof Error ? err.message : '';
+      const isNetwork =
+        raw === 'Failed to fetch' ||
+        raw.includes('NetworkError') ||
+        raw.includes('Load failed');
+      const message = isNetwork
+        ? String(t('leadForm.toastNetworkError'))
+        : raw || fallback;
+      toast({
+        title: String(t('leadForm.toastError')),
+        description: message || fallback,
+        variant: 'destructive',
+      });
       setIsSubmitting(false);
     }
   };
-
-  const services = t('leadForm.services') as unknown as string[];
-  const budgetRanges = t('leadForm.budgetRanges') as unknown as string[];
 
   const inputBase = `w-full px-4 py-3.5 text-sm rounded-xl border border-border/80 bg-background/80 text-foreground placeholder:text-muted-foreground/65 shadow-sm
     focus:outline-none focus:ring-2 focus:ring-primary/25 focus:border-primary/40 focus:shadow-md transition-all duration-300 ease-out
@@ -138,7 +174,7 @@ const LeadForm = () => {
         {/* Form + Contact */}
         <div className="flex flex-col gap-6 max-w-3xl mx-auto">
           {/* Form Card */}
-          <form onSubmit={handleSubmit} className="card-glass p-6 sm:p-8 flex flex-col">
+          <form onSubmit={handleSubmit} className="card-glass p-6 sm:p-8 flex flex-col overflow-visible">
             {/* About You */}
             <div className="mb-6">
               <div className={`flex items-center gap-2 mb-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
@@ -148,22 +184,46 @@ const LeadForm = () => {
                 <h3 className="text-base font-bold text-foreground">{t('leadForm.sections.aboutYou')}</h3>
               </div>
               <div className="space-y-4">
-                <div>
-                  <label htmlFor="fullName" className={labelBase}>{t('leadForm.fields.fullName')} *</label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    className={`${inputBase} ${errors.fullName ? inputError : 'border-border'}`}
-                    placeholder={t('leadForm.fields.fullName')}
-                    dir={dir}
-                  />
-                  {errors.fullName && <p className={errorBase}>{errors.fullName}</p>}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="fullName" className={labelBase}>
+                      {t('leadForm.fields.fullName')} *
+                    </label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      autoComplete="name"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      className={`${inputBase} ${errors.fullName ? inputError : 'border-border'}`}
+                      placeholder={t('leadForm.fields.fullName')}
+                      dir={dir}
+                    />
+                    {errors.fullName && <p className={errorBase}>{errors.fullName}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="email" className={labelBase}>
+                      {t('leadForm.fields.email')} *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      autoComplete="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className={`${inputBase} ${errors.email ? inputError : 'border-border'}`}
+                      placeholder={t('leadForm.fields.emailPlaceholder')}
+                      dir="ltr"
+                    />
+                    {errors.email && <p className={errorBase}>{errors.email}</p>}
+                  </div>
                 </div>
                 <div>
-                  <label htmlFor="businessType" className={labelBase}>{t('leadForm.fields.businessType')} *</label>
+                  <label htmlFor="businessType" className={labelBase}>
+                    {t('leadForm.fields.businessType')} *
+                  </label>
                   <input
                     type="text"
                     id="businessType"
@@ -195,12 +255,14 @@ const LeadForm = () => {
                     name="serviceNeeded"
                     value={formData.serviceNeeded}
                     onChange={handleChange}
-                    className={`${inputBase} cursor-pointer ${errors.serviceNeeded ? inputError : 'border-border'}`}
-                    dir={dir}
+                    className={`${inputBase} cursor-pointer appearance-auto ${errors.serviceNeeded ? inputError : 'border-border'}`}
+                    dir="ltr"
                   >
                     <option value="">{t('leadForm.fields.selectService')}</option>
-                    {Array.isArray(services) && services.map((service) => (
-                      <option key={service} value={service}>{service}</option>
+                    {serviceOptions.map((service) => (
+                      <option key={service} value={service}>
+                        {service}
+                      </option>
                     ))}
                   </select>
                   {errors.serviceNeeded && <p className={errorBase}>{errors.serviceNeeded}</p>}
@@ -212,12 +274,14 @@ const LeadForm = () => {
                     name="budgetRange"
                     value={formData.budgetRange}
                     onChange={handleChange}
-                    className={`${inputBase} cursor-pointer ${errors.budgetRange ? inputError : 'border-border'}`}
-                    dir={dir}
+                    className={`${inputBase} cursor-pointer appearance-auto ${errors.budgetRange ? inputError : 'border-border'}`}
+                    dir="ltr"
                   >
                     <option value="">{t('leadForm.fields.selectBudget')}</option>
-                    {Array.isArray(budgetRanges) && budgetRanges.map((range) => (
-                      <option key={range} value={range}>{range}</option>
+                    {budgetOptions.map((range) => (
+                      <option key={range} value={range}>
+                        {range}
+                      </option>
                     ))}
                   </select>
                   {errors.budgetRange && <p className={errorBase}>{errors.budgetRange}</p>}
@@ -264,19 +328,48 @@ const LeadForm = () => {
               </div>
             </div>
 
-            {/* Message */}
+            {/* Subject + message */}
             <div className="mb-6">
-              <label htmlFor="message" className={labelBase}>{t('leadForm.fields.message')}</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={4}
-                className={`${inputBase} resize-none border-border`}
-                placeholder={t('leadForm.fields.messagePlaceholder')}
-                dir={dir}
-              />
+              <div className={`flex items-center gap-2 mb-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
+                <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <FileText className="w-4 h-4 text-primary" />
+                </div>
+                <h3 className="text-base font-bold text-foreground">{t('leadForm.sections.yourMessage')}</h3>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <label htmlFor="subject" className={labelBase}>
+                    {t('leadForm.fields.subject')} *
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className={`${inputBase} ${errors.subject ? inputError : 'border-border'}`}
+                    placeholder={t('leadForm.fields.subjectPlaceholder')}
+                    dir={dir}
+                  />
+                  {errors.subject && <p className={errorBase}>{errors.subject}</p>}
+                </div>
+                <div>
+                  <label htmlFor="message" className={labelBase}>
+                    {t('leadForm.fields.message')} *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5}
+                    className={`${inputBase} resize-y min-h-[120px] ${errors.message ? inputError : 'border-border'}`}
+                    placeholder={t('leadForm.fields.messagePlaceholder')}
+                    dir={dir}
+                  />
+                  {errors.message && <p className={errorBase}>{errors.message}</p>}
+                </div>
+              </div>
             </div>
 
             {/* Submit */}

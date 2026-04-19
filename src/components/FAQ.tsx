@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import ScrollRevealSection from './ScrollRevealSection';
 
 const FAQ = () => {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
 
   const faqs = t('faq.items') as unknown as { question: string; answer: string }[];
 
@@ -38,10 +38,14 @@ const FAQ = () => {
                 value={`item-${index}`}
                 className="bg-card rounded-2xl border border-border/60 px-6 shadow-card overflow-hidden transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
               >
-                <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
+                <AccordionTrigger
+                  className={`font-semibold text-foreground hover:no-underline py-5 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                >
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-5">
+                <AccordionContent
+                  className={`text-muted-foreground pb-5 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                >
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

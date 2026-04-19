@@ -1,4 +1,5 @@
 import { ArrowRight, Zap, Users, Palette } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState, useEffect } from 'react';
 
@@ -90,19 +91,19 @@ const Hero = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fade-in-up"
             style={{ animationDelay: '0.14s' }}
           >
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="btn-primary text-base md:text-lg px-8 py-4 w-full sm:w-auto rounded-xl glow-soft hover:glow-strong transition-all duration-300 group shadow-[0_8px_32px_-8px_hsl(221_83%_53%/0.6)]"
             >
               {t('hero.cta')}
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300 ease-out" />
-            </a>
-            <a
-              href="#portfolio"
+            </Link>
+            <Link
+              to="/#portfolio"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 w-full sm:w-auto rounded-xl text-base md:text-lg font-semibold text-white border-2 border-white/25 bg-white/5 backdrop-blur-md hover:bg-white/12 hover:border-white/40 transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
             >
               {t('hero.ctaSecondary')}
-            </a>
+            </Link>
           </div>
 
           <div

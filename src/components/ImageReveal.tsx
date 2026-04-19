@@ -2,14 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ImageReveal = () => {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  const images = [
-    '/product1.png',
-    '/product2.jpeg',
-  ];
+  const images = ['/product1.png', '/product2.jpeg'];
+  const bullets = t('imageReveal.bullets') as unknown as string[];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +32,6 @@ const ImageReveal = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate distance - responsive based on screen size
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -46,11 +43,13 @@ const ImageReveal = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Calculate distance - starts at max (apart) and decreases to 0 (together)
   const maxDistance = isMobile ? 180 : 180;
-  const distance = isMobile 
-    ? (1.3 - scrollProgress) * maxDistance 
+  const distance = isMobile
+    ? (1.3 - scrollProgress) * maxDistance
     : (1 - scrollProgress) * maxDistance;
+
+  const textAlign = dir === 'rtl' ? 'text-right' : 'text-left';
+  const flexDir = dir === 'rtl' ? 'flex-row-reverse' : '';
 
   return (
     <section
@@ -62,32 +61,28 @@ const ImageReveal = () => {
     >
       <div className="container-main px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          
-          {/* Images Section - Left Side */}
           <div className="order-2 md:order-1">
-            <div className="relative flex items-center justify-center md:justify-start gap-4">
-              {/* First Image */}
-              <div 
+            <div
+              className={`relative flex items-center justify-center md:justify-start gap-4 ${dir === 'rtl' ? 'md:flex-row-reverse' : ''}`}
+            >
+              <div
                 className="relative flex-shrink-0"
                 style={{
                   width: isMobile ? '240px' : '300px',
-                  transform: isMobile 
-                    ? 'translateX(0)' 
-                    : `translateX(-${distance}px)`,
+                  transform: isMobile ? 'translateX(0)' : `translateX(-${distance}px)`,
                   transition: 'transform 0.1s ease-out',
                 }}
               >
                 <div className="relative overflow-hidden rounded-lg md:rounded-xl">
                   <img
                     src={images[0]}
-                    alt="Product 1"
+                    alt={String(t('imageReveal.alt1'))}
                     className="w-full h-auto object-cover"
                   />
                 </div>
               </div>
 
-              {/* Second Image */}
-              <div 
+              <div
                 className="relative flex-shrink-0"
                 style={{
                   width: isMobile ? '190px' : '240px',
@@ -98,7 +93,7 @@ const ImageReveal = () => {
                 <div className="relative overflow-hidden rounded-lg md:rounded-xl">
                   <img
                     src={images[1]}
-                    alt="Product 2"
+                    alt={String(t('imageReveal.alt2'))}
                     className="w-full h-auto object-cover"
                   />
                 </div>
@@ -106,27 +101,16 @@ const ImageReveal = () => {
             </div>
           </div>
 
-          {/* Text Section - Right Side */}
           <div className="order-1 md:order-2">
-            <div className="text-right md:text-right">
-              {/* Features List */}
-              <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>עדכונים מלאים על כל הפעולות שהלקוחות מבצעים באפליקציה</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>צפייה ושליטה בזמן אמת בכל הזמנות התורים של הלקוחות</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>שליטה מלאה בניראות האפליקציה מתוך תפריט הניהול</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-primary text-xl">✓</span>
-                  <span>שליחת התראות ללקוחות בכל רגע נתון</span>
-                </li>
+            <div className={textAlign}>
+              <ul className={`space-y-3 text-muted-foreground ${textAlign}`}>
+                {Array.isArray(bullets) &&
+                  bullets.map((line, i) => (
+                    <li key={i} className={`flex items-start gap-3 ${flexDir}`}>
+                      <span className="text-primary text-xl shrink-0">✓</span>
+                      <span>{line}</span>
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>

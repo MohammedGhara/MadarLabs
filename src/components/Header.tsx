@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
@@ -22,13 +22,29 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { href: '#services', label: t('nav.services') },
-    { href: '#portfolio', label: t('nav.portfolio') },
-    { href: '#process', label: t('nav.process') },
-    { href: '#pricing', label: t('nav.pricing') },
-    { href: '#testimonials', label: t('nav.reviews') },
-    { href: '#faq', label: t('nav.faq') },
+    { to: '/#services', label: t('nav.services') },
+    { to: '/#portfolio', label: t('nav.portfolio') },
+    { to: '/#process', label: t('nav.process') },
+    { to: '/pricing', label: t('nav.pricing') },
+    { to: '/#testimonials', label: t('nav.reviews') },
+    { to: '/#faq', label: t('nav.faq') },
+    { to: '/contact', label: t('nav.contact') },
   ];
+
+  /** Hash links go to home sections; standalone paths are their own routes */
+  const isStandaloneNavActive = (to: string) => !to.includes('#') && pathname === to;
+
+  const desktopLinkClass = (to: string) => {
+    const base =
+      'relative inline-block pb-1 text-sm font-semibold transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:transition-all after:duration-300 after:ease-out hover:after:w-full';
+    if (isOverDarkHero) {
+      return `${base} text-white/95 hover:text-white after:bg-gradient-to-r after:from-white after:to-cyan-200 drop-shadow-sm [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]`;
+    }
+    if (isStandaloneNavActive(to)) {
+      return `${base} text-foreground after:w-full after:bg-gradient-to-r after:from-primary after:to-cyan-400`;
+    }
+    return `${base} text-muted-foreground hover:text-foreground after:bg-gradient-to-r after:from-primary after:to-cyan-400`;
+  };
 
   return (
     <header
@@ -43,7 +59,7 @@ const Header = () => {
       <div className="container-main">
         <nav className="flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
+          <Link to="/" className="flex items-center gap-2.5 group">
             <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-gradient-primary flex items-center justify-center shadow-soft ring-1 ring-white/25 group-hover:shadow-strong group-hover:scale-[1.04] transition-all duration-300 ease-out">
               <span className="text-primary-foreground font-bold text-lg md:text-xl">M</span>
             </div>
@@ -61,31 +77,23 @@ const Header = () => {
                 <span className="text-gradient">Labs</span>
               )}
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`relative inline-block pb-1 text-sm font-semibold transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:transition-all after:duration-300 after:ease-out hover:after:w-full ${
-                  isOverDarkHero
-                    ? 'text-white/95 hover:text-white after:bg-gradient-to-r after:from-white after:to-cyan-200 drop-shadow-sm [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]'
-                    : 'text-muted-foreground hover:text-foreground after:bg-gradient-to-r after:from-primary after:to-cyan-400'
-                }`}
-              >
+              <Link key={link.to} to={link.to} className={desktopLinkClass(link.to)}>
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* Desktop CTA + Language */}
           <div className="hidden lg:flex items-center gap-4">
             <LanguageSwitcher variant={isOverDarkHero ? 'onDark' : 'default'} />
-            <a href="#contact" className="btn-primary text-sm px-5 shadow-md">
+            <Link to="/contact" className="btn-primary text-sm px-5 shadow-md">
               {t('nav.getConsultation')}
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -96,7 +104,7 @@ const Header = () => {
               className={`p-2 rounded-lg transition-colors ${
                 isOverDarkHero ? 'text-white hover:bg-white/10' : 'text-foreground hover:bg-muted/50'
               }`}
-              aria-label="Toggle menu"
+              aria-label={t('common.toggleMenu') as string}
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -108,22 +116,24 @@ const Header = () => {
           <div className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border/60 px-4 py-6 animate-fade-in-up shadow-inner">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
+                <Link
+                  key={link.to}
+                  to={link.to}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-base font-medium text-foreground py-2 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                  className={`text-base font-medium py-2 ${
+                    isStandaloneNavActive(link.to) ? 'text-primary' : 'text-foreground'
+                  } ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="btn-primary text-center mt-4"
               >
                 {t('nav.getConsultation')}
-              </a>
+              </Link>
             </div>
           </div>
         )}

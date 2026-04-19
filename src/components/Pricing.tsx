@@ -1,4 +1,5 @@
 import { Check, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ScrollRevealSection from './ScrollRevealSection';
 
@@ -105,8 +106,8 @@ const Pricing = () => {
                 </ul>
 
                 {/* CTA */}
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   className={`block w-full text-center py-2 sm:py-3 px-4 sm:px-6 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 ${
                     plan.popular
                       ? 'bg-white text-primary hover:bg-white/90'
@@ -114,7 +115,7 @@ const Pricing = () => {
                   }`}
                 >
                   {t('pricing.getStarted')}
-                </a>
+                </Link>
               </div>
             );
           })}
@@ -125,9 +126,9 @@ const Pricing = () => {
           <p className="text-muted-foreground mb-4">
             {t('pricing.customQuote')}
           </p>
-          <a href="#contact" className="btn-secondary">
+          <Link to="/contact" className="btn-secondary">
             {t('pricing.requestQuote')}
-          </a>
+          </Link>
         </div>
         </ScrollRevealSection>
       </div>

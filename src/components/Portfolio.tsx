@@ -8,6 +8,7 @@ import {
   Wrench,
   TrendingUp,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ScrollRevealSection from './ScrollRevealSection';
 
@@ -207,8 +208,8 @@ const Portfolio = () => {
                     </div>
                   </div>
 
-                  <a
-                    href="#contact"
+                  <Link
+                    to="/contact"
                     className="portfolio-cta-glow group/cta relative mt-6 inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl border border-primary/25 bg-primary/[0.06] px-4 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:border-primary/40 hover:bg-primary/[0.1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <span className="relative z-[1]">{t('portfolio.requestSimilar')}</span>
@@ -216,7 +217,7 @@ const Portfolio = () => {
                       className="relative z-[1] h-4 w-4 transition-transform duration-300 ease-out group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5"
                       aria-hidden
                     />
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}

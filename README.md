@@ -36,6 +36,8 @@ npm i
 npm run dev
 ```
 
+**Contact form (local):** the API runs on port **3001**. Use **`npm run dev:full`** to start Vite and the mail server together, or run **`npm run server`** in a second terminal. Put Gmail settings in **`server/.env`** only (see `server/README.md`). Root **`.env`** is for **`VITE_*`** variables only.
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
