@@ -117,6 +117,29 @@ export default {
           "0%": { opacity: "0", transform: "scale(0.98)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
+        "hero-mesh-a": {
+          "0%, 100%": { transform: "translate(-50%, -50%) rotate(0deg) scale(1)" },
+          "50%": { transform: "translate(-50%, -50%) rotate(180deg) scale(1.07)" },
+        },
+        "hero-mesh-b": {
+          "0%, 100%": { transform: "translate(-50%, -50%) rotate(0deg) scale(1)" },
+          "50%": { transform: "translate(-50%, -50%) rotate(-140deg) scale(1.12)" },
+        },
+        "hero-aurora": {
+          "0%, 100%": { opacity: "0.75" },
+          "50%": { opacity: "1" },
+        },
+        "hero-beam": {
+          "0%": { transform: "translateX(-45%) skewX(-16deg)", opacity: "0" },
+          "12%": { opacity: "0.5" },
+          "50%": { transform: "translateX(55%) skewX(-16deg)", opacity: "0.35" },
+          "88%": { opacity: "0.45" },
+          "100%": { transform: "translateX(160%) skewX(-16deg)", opacity: "0" },
+        },
+        "hero-grid-breathe": {
+          "0%, 100%": { opacity: "0.07" },
+          "50%": { opacity: "0.13" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -127,6 +150,11 @@ export default {
         shimmer: "shimmer 2s linear infinite",
         "page-enter": "pageEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both",
         "scale-in": "scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "hero-mesh-a": "hero-mesh-a 28s linear infinite",
+        "hero-mesh-b": "hero-mesh-b 36s linear infinite reverse",
+        "hero-aurora": "hero-aurora 16s ease-in-out infinite",
+        "hero-beam": "hero-beam 24s ease-in-out infinite",
+        "hero-grid-breathe": "hero-grid-breathe 10s ease-in-out infinite",
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.22, 1, 0.36, 1)",

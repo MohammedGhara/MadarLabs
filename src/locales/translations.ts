@@ -66,21 +66,24 @@ export const translations: Record<Language, Record<string, unknown>> = {
       titleHighlight: 'deliver results',
       subtitle: "See how we've helped businesses like yours grow with custom digital solutions.",
       requestSimilar: 'Request a similar project',
+      visitLiveSite: 'Visit live site',
       result: 'Result:',
       projects: {
-        restaurant: {
-          title: 'Restaurant Ordering Site',
-          category: 'Food & Beverage',
+        shishaKing: {
+          title: 'ShishaKing',
+          category: 'Premium shisha & lounge',
           description:
-            'Custom ordering flow with menu highlights, upsells, and a delivery-ready checkout experience.',
-          result: '40% increase in online orders',
+            'Premium web experience for a shisha lounge—atmosphere-led visuals, clear menu and location story, and smooth paths to connect with guests.',
+          result: 'Stronger brand presence & discovery',
+          imageAlt: 'Premium shisha lounge — ShishaKing',
         },
-        clinic: {
-          title: 'Clinic Booking System',
-          category: 'Healthcare',
+        hebaFashion: {
+          title: 'Heba Fashion',
+          category: 'Fashion & styling',
           description:
-            'Online booking, automated reminders, and calendar sync to reduce missed appointments.',
-          result: '60% reduction in no-shows',
+            'Elegant brand site for a designer fashion label—luxury presentation, clear styling services, and a polished path to book and shop.',
+          result: 'Elevated brand & client bookings',
+          imageAlt: 'Heba Fashion — designer & styling',
         },
         gym: {
           title: 'Fitness Gym App',
@@ -522,21 +525,24 @@ export const translations: Record<Language, Record<string, unknown>> = {
       titleHighlight: 'نتائج',
       subtitle: 'شاهد كيف ساعدنا شركات مثل شركتك على النمو بحلول رقمية مخصصة.',
       requestSimilar: 'اطلب مشروعاً مشابهاً',
+      visitLiveSite: 'زيارة الموقع المباشر',
       result: 'النتيجة:',
       projects: {
-        restaurant: {
-          title: 'موقع طلبات المطعم',
-          category: 'الطعام والمشروبات',
+        shishaKing: {
+          title: 'ShishaKing',
+          category: 'شيشة ولاونج فاخر',
           description:
-            'تجربة طلب مخصصة مع عرض القائمة والعروض الإضافية ودفع جاهز للتوصيل.',
-          result: '40% زيادة في الطلبات',
+            'تجربة ويب فاخرة لصالة شيشة — صور تعكس الأجواء، قصة واضحة للقائمة والموقع، ومسارات سلسة للتواصل مع الضيوف.',
+          result: 'حضور أقوى للعلامة واكتشاف أفضل',
+          imageAlt: 'صالة شيشة فاخرة — ShishaKing',
         },
-        clinic: {
-          title: 'نظام حجز العيادة',
-          category: 'الرعاية الصحية',
+        hebaFashion: {
+          title: 'Heba Fashion',
+          category: 'أزياء وستايل',
           description:
-            'حجز عبر الإنترنت، تذكيرات تلقائية، ومزامنة التقويم لتقليل الغياب.',
-          result: '60% تقليل في عدم الحضور',
+            'موقع أنيق لعلامة أزياء — عرض فاخر، خدمات تصميم واضحة، وتجربة سلسة للحجز والتسوق.',
+          result: 'علامة أرقى وحجوزات أوضح',
+          imageAlt: 'Heba Fashion — تصميم وستايل',
         },
         gym: {
           title: 'تطبيق صالة الرياضة',
@@ -978,21 +984,24 @@ export const translations: Record<Language, Record<string, unknown>> = {
       titleHighlight: 'מניבים תוצאות',
       subtitle: 'ראה איך עזרנו לעסקים כמו שלך לצמוח עם פתרונות דיגיטליים מותאמים.',
       requestSimilar: 'בקש פרויקט דומה',
+      visitLiveSite: 'לאתר החי',
       result: 'תוצאה:',
       projects: {
-        restaurant: {
-          title: 'אתר הזמנות למסעדה',
-          category: 'מזון ומשקאות',
+        shishaKing: {
+          title: 'ShishaKing',
+          category: 'שישה ולאונג\' פרימיום',
           description:
-            'זרימת הזמנה מותאמת עם תפריט, מבצעים נלווים ותשלום מוכן למשלוחים.',
-          result: '40% עלייה בהזמנות',
+            'חוויית אינטרנט פרימיום ללאונג\' שישה — ויזואליות שמדגישה אווירה, סיפור תפריט ומיקום ברור, ונתיבי קשר חלקים לאורחים.',
+          result: 'נוכחות מותג חזקה ויותר חשיפה',
+          imageAlt: 'לאונג\' שישה פרימיום — ShishaKing',
         },
-        clinic: {
-          title: 'מערכת הזמנות לקליניקה',
-          category: 'בריאות',
+        hebaFashion: {
+          title: 'Heba Fashion',
+          category: 'אופנה וסטיילינג',
           description:
-            'הזמנות מקוונות, תזכורות אוטומטיות וסנכרון יומן להפחתת אי-הגעות.',
-          result: '60% פחות אי-הגעות',
+            'אתר מותג אלגנטי ללייבל אופנה — מיצוג פרימיום, שירותי עיצוב ברורים, ונתיב חלק להזמנות ולקנייה.',
+          result: 'מותג משודרג ופניות מסודרות',
+          imageAlt: 'Heba Fashion — מעצבת וסטיילינג',
         },
         gym: {
           title: 'אפליקציית חדר כושר',
