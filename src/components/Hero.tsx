@@ -1,10 +1,13 @@
 import { ArrowRight, Zap, Users, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { cn } from '@/lib/utils';
 import HeroAnimatedBackdrop from '@/components/HeroAnimatedBackdrop';
+import HeroBackground3D from '@/components/HeroBackground3D';
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
+  const rtl = dir === 'rtl';
 
   const trustBadges = [
     { icon: Zap, label: t('hero.trustBadges.fastDelivery') },
@@ -15,9 +18,16 @@ const Hero = () => {
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-20 sm:min-h-screen">
       <HeroAnimatedBackdrop />
+      <HeroBackground3D />
 
       <div className="container-main relative z-20 px-4 pb-20 pt-10 md:px-8 md:pb-28 md:pt-14">
-        <div className="mx-auto max-w-4xl text-center">
+        <div
+          className={cn(
+            'mx-auto max-w-3xl text-center',
+            'lg:mx-0 lg:max-w-xl lg:text-left',
+            rtl && 'lg:ml-auto lg:max-w-xl lg:text-right'
+          )}
+        >
           <p className="mb-4 animate-fade-in-up text-[11px] font-semibold uppercase tracking-[0.2em] text-white/75 sm:text-xs">
             {t('hero.badge')}
           </p>
@@ -30,22 +40,33 @@ const Hero = () => {
           </h1>
 
           <p
-            className="mx-auto mb-10 max-w-2xl animate-fade-in-up text-base font-medium leading-relaxed text-white/85 drop-shadow-[0_1px_12px_rgba(0,0,0,0.35)] md:text-lg lg:text-xl"
+            className="mx-auto mb-8 max-w-2xl animate-fade-in-up text-base font-medium leading-relaxed text-white/85 drop-shadow-[0_1px_12px_rgba(0,0,0,0.35)] md:mb-10 md:text-lg lg:mx-0 lg:text-xl"
             style={{ animationDelay: '0.08s' }}
           >
             {t('hero.subheadline')}
           </p>
 
           <div
-            className="mb-12 flex animate-fade-in-up flex-col items-center justify-center gap-4 sm:flex-row"
+            className={cn(
+              'mb-10 flex animate-fade-in-up flex-col items-stretch justify-center gap-4 sm:mb-12 sm:flex-row sm:items-center',
+              rtl ? 'sm:justify-end' : 'sm:justify-start'
+            )}
             style={{ animationDelay: '0.14s' }}
           >
             <Link
               to="/contact"
-              className="btn-primary group w-full rounded-xl px-8 py-4 text-base glow-soft shadow-[0_8px_32px_-8px_hsl(221_83%_53%/0.6)] transition-all duration-300 hover:glow-strong sm:w-auto md:text-lg"
+              className="btn-primary group w-full rounded-xl px-8 py-4 text-center text-base glow-soft shadow-[0_8px_32px_-8px_hsl(221_83%_53%/0.6)] transition-all duration-300 hover:glow-strong sm:w-auto md:text-lg"
             >
-              {t('hero.cta')}
-              <ArrowRight size={20} className="transition-transform duration-300 ease-out group-hover:translate-x-1" />
+              <span className="inline-flex items-center justify-center gap-2">
+                {t('hero.cta')}
+                <ArrowRight
+                  size={20}
+                  className={cn(
+                    'transition-transform duration-300 ease-out group-hover:translate-x-1',
+                    rtl && 'rotate-180 group-hover:-translate-x-1 group-hover:translate-x-0'
+                  )}
+                />
+              </span>
             </Link>
             <Link
               to="/#portfolio"
@@ -56,7 +77,10 @@ const Hero = () => {
           </div>
 
           <div
-            className="mb-12 flex animate-fade-in-up flex-wrap items-center justify-center gap-8 md:gap-12"
+            className={cn(
+              'mb-10 flex animate-fade-in-up flex-wrap items-center justify-center gap-8 md:gap-12',
+              rtl ? 'lg:justify-end' : 'lg:justify-start'
+            )}
             style={{ animationDelay: '0.2s' }}
           >
             {trustBadges.map((badge, index) => (
@@ -72,7 +96,10 @@ const Hero = () => {
           </div>
 
           <div
-            className="card-glass-hero mx-auto max-w-lg animate-fade-in-up px-6 py-5 text-left sm:text-center"
+            className={cn(
+              'card-glass-hero mx-auto max-w-lg animate-fade-in-up px-6 py-5 sm:text-center',
+              rtl ? 'lg:ml-0 lg:mr-auto lg:text-right' : 'lg:mx-0 lg:text-left'
+            )}
             style={{ animationDelay: '0.28s' }}
           >
             <p className="text-sm leading-relaxed text-white/88">

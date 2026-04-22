@@ -140,6 +140,14 @@ export default {
           "0%, 100%": { opacity: "0.07" },
           "50%": { opacity: "0.13" },
         },
+        "hero-showcase-drift-y": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+        "hero-orbit-spin": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -155,6 +163,8 @@ export default {
         "hero-aurora": "hero-aurora 16s ease-in-out infinite",
         "hero-beam": "hero-beam 24s ease-in-out infinite",
         "hero-grid-breathe": "hero-grid-breathe 10s ease-in-out infinite",
+        "hero-showcase-drift-y": "hero-showcase-drift-y 9s ease-in-out infinite",
+        "hero-orbit-spin": "hero-orbit-spin 78s linear infinite",
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.22, 1, 0.36, 1)",
