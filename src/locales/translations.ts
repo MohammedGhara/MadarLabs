@@ -201,39 +201,65 @@ export const translations: Record<Language, Record<string, unknown>> = {
       badge: 'Testimonials',
       title: 'What our clients',
       titleHighlight: 'say',
-      subtitle: "Don't just take our word for it — hear from businesses we've helped succeed.",
+      subtitle:
+        'Real feedback from businesses we worked with. Click “Add your review” to open the form — a valid email is required to show your review on this page.',
       items: [
         {
-          name: 'Sarah Cohen',
-          role: 'Owner, Bloom Café',
+          name: 'Noura Al-Mansouri',
+          role: 'Owner, Al-Sham Restaurant',
           quote:
-            'MadarLabs transformed our online presence. Our ordering system increased revenue by 40% in the first month. The team was professional and delivered ahead of schedule.',
+            'They built a clear site with a menu and WhatsApp orders. Customers find us on Google more easily, and the project was delivered on time.',
         },
         {
-          name: 'David Levi',
-          role: 'CEO, FitPro Gym',
+          name: 'Khaled Al-Otaibi',
+          role: 'Founder, Afaq Fitness',
           quote:
-            'The app they built for our gym is exactly what we needed. Member engagement tripled and the booking system works flawlessly. Highly recommend!',
+            'Class booking from the phone without overloading the front desk. The interface is simple and changes were handled quickly.',
         },
         {
-          name: 'Maya Shapira',
-          role: 'Director, Prime Real Estate',
+          name: 'Lamya Al-Zahrani',
+          role: 'Director, Al-Madinah Properties',
           quote:
-            'Our lead generation website has been a game-changer. We now get 150+ qualified leads per month. The ROI has been incredible.',
+            'The listings site is fast and the contact form works well. We get more serious leads now — worth the investment.',
         },
         {
-          name: 'Oren Tal',
-          role: 'Founder, TechServe IT',
+          name: 'Abdulrahman Fahd',
+          role: 'Founder, Tech Corner Store',
           quote:
-            'Professional, responsive, and they truly understand business needs. Our new website perfectly represents our brand and converts visitors into clients.',
+            'The store looks professional and checkout works on mobile. They explained hosting in plain language. Sales improved in the first weeks.',
         },
         {
-          name: 'Noa Berger',
-          role: 'Owner, StyleBox Boutique',
+          name: 'Huda Al-Qahtani',
+          role: 'Owner, Nada Beauty Salon',
           quote:
-            "The e-commerce store they built is beautiful and easy to manage. Sales have been growing steadily since launch. Couldn't be happier!",
+            'Online booking reduced no-shows. Clients pick service and time; we get a WhatsApp summary. Exactly what we needed.',
         },
       ],
+      reviewForm: {
+        title: 'Leave your feedback',
+        subtitle:
+          'To publish a review on this page, use your real email. We only show a masked version (e.g. mo***@gmail.com) next to your name — never the full address.',
+        nameLabel: 'Your name',
+        namePlaceholder: 'Full name',
+        emailLabel: 'Email',
+        emailPlaceholder: 'you@example.com',
+        emailHint: 'Required — we display a privacy-safe masked email on the card.',
+        emailInvalid: 'Please enter a valid email address.',
+        roleLabel: 'Role or business',
+        rolePlaceholder: 'e.g. Owner, Cafe Nour',
+        optional: 'optional',
+        ratingLabel: 'Rating',
+        reviewLabel: 'Your review',
+        reviewPlaceholder: 'What went well? What would you tell other businesses?',
+        submit: 'Submit review',
+        submitting: 'Sending…',
+        success: 'Thanks! Your review is now visible in the list above.',
+        error: "Couldn't send. Check the fields and try again.",
+        errorApi:
+          "We can't connect to the review service right now. Please try again in a few minutes.",
+        visitorBadge: 'Visitor',
+        dialogCta: 'Add your review',
+      },
     },
     faq: {
       badge: 'FAQ',
@@ -369,16 +395,6 @@ export const translations: Record<Language, Record<string, unknown>> = {
       title: 'Page not found',
       description: "The page you're looking for doesn't exist or was moved.",
       cta: 'Return to Home',
-    },
-    imageReveal: {
-      alt1: 'Product showcase 1',
-      alt2: 'Product showcase 2',
-      bullets: [
-        'Full visibility into customer actions in your app',
-        'Real-time view and control of all appointment bookings',
-        'Full control of the app appearance from the admin panel',
-        'Send notifications to customers anytime',
-      ],
     },
     legal: {
       backHome: 'Back to Home',
@@ -660,39 +676,65 @@ export const translations: Record<Language, Record<string, unknown>> = {
       badge: 'شهادات العملاء',
       title: 'ماذا يقول',
       titleHighlight: 'عملاؤنا',
-      subtitle: 'لا تأخذ كلامنا فقط — اسمع من الشركات التي ساعدناها على النجاح.',
+      subtitle:
+        'تقييمات حقيقية من أصحاب أعمال تعاملنا معهم. اضغط «أضف تقييمك» لفتح النموذج — يلزم بريد إلكتروني صالح ليظهر رأيك في هذه الصفحة.',
       items: [
         {
-          name: 'سارة كوهين',
-          role: 'مالكة، مقهى بلوم',
+          name: 'نورة المنصوري',
+          role: 'صاحبة مطعم الشام — حيفا',
           quote:
-            'حوّلت MadarLabs حضورنا الرقمي. زاد نظام الطلبات إيراداتنا 40% في الشهر الأول. الفريق محترف وأنجز قبل الموعد.',
+            'بنوا لنا موقع واضح مع قائمة وطلب عبر الواتساب. صار الزبائن يلقونا بسهولة وسلّموا بالموعد.',
         },
         {
-          name: 'ديفيد ليفي',
-          role: 'الرئيس التنفيذي، صالة فيتبرو',
+          name: 'خالد العتيبي',
+          role: 'مؤسس صالة الأفق — الناصرة',
           quote:
-            'التطبيق الذي بناه لفريقنا هو بالضبط ما نحتاجه. تضاعفت تفاعل الأعضاء ونظام الحجز يعمل بسلاسة. أنصح بهم بشدة!',
+            'الحجز من الجوال بدون ضغط على الاستقبال. الواجهة سهلة والتعديلات اللي طلبناها كانت بسرعة.',
         },
         {
-          name: 'مايا شابيرا',
-          role: 'مديرة، برايم للعقارات',
+          name: 'لمياء الزهراني',
+          role: 'مديرة مكتب عقاري المدينة — أم الفحم',
           quote:
-            'موقع توليد العملاء غيّر قواعد اللعبة. نحصل الآن على أكثر من 150 عميلاً مؤهلاً شهرياً. العائد كان مذهلاً.',
+            'الموقع صار سريع ونموذج التواصل مضبوط. الفيد ينعكس في الشغل.',
         },
         {
-          name: 'أورين تال',
-          role: 'المؤسس، تيك سيرف لتقنية المعلومات',
+          name: 'عبدالرحمن فهد',
+          role: 'صاحب متجر تقني — الطيبة',
           quote:
-            'محترفون وسريعو الاستجابة ويفهمون احتياجات الأعمال. موقعنا الجديد يمثل علامتنا ويحوّل الزوار إلى عملاء.',
+            'شكل متجرنا احترافي والدفع من الجوال تمام. شرحوا الاستضافة ببساطة. المبيعات ارتفعت بأسابيع.',
         },
         {
-          name: 'نوع برجر',
-          role: 'مالكة، بوتيك ستايل بوكس',
+          name: 'هدى القحطاني',
+          role: 'صاحبة صالون ندى — باقة الغربية',
           quote:
-            'المتجر الإلكتروني الذي بنوه جميل وسهل الإدارة. المبيعات تنمو بثبات منذ الإطلاق. سعيدة جداً!',
+            'الحجز أونلاين قلل الغياب. الزبونة تختار الوقت ونستلم ملخص واتساب. بالضبط طلبت.',
         },
       ],
+      reviewForm: {
+        title: 'رأيك يهمنا',
+        subtitle:
+          'لنشر تعليقك في هذه الصفحة يلزم بريدك الإلكتروني. لن نعرض البريد كاملاً — فقط شكل آمن (مثال: ab***@gmail.com) بجانب اسمك.',
+        nameLabel: 'الاسم',
+        namePlaceholder: 'الاسم الكامل',
+        emailLabel: 'البريد الإلكتروني',
+        emailPlaceholder: 'name@email.com',
+        emailHint: 'مطلوب — سنعرض نسخة مجهّلة من البريد على البطاقة فقط.',
+        emailInvalid: 'الرجاء إدخال بريد إلكتروني صحيح.',
+        roleLabel: 'الصفة أو النشاط',
+        rolePlaceholder: 'مثال: صاحب مطعم، عيادة…',
+        optional: 'اختياري',
+        ratingLabel: 'التقييم',
+        reviewLabel: 'نص التعليق',
+        reviewPlaceholder: 'ماذا نفعكم العمل؟ ماذا تود أن يعرف غيرك؟',
+        submit: 'إرسال',
+        submitting: 'جاري الإرسال…',
+        success: 'شكراً! يظهر تعليقك في القائمة أعلاه.',
+        error: 'تعذر الإرسال. راجع الحقول وحاول مرة أخرى.',
+        errorApi:
+          'تعذر الاتصال بخدمة التعليقات حالياً. يرجى المحاولة بعد بضع دقائق.',
+        visitorBadge: 'زائر',
+        dialogCta: 'أضف تقييمك',
+      },
     },
     faq: {
       badge: 'الأسئلة الشائعة',
@@ -828,16 +870,6 @@ export const translations: Record<Language, Record<string, unknown>> = {
       title: 'الصفحة غير موجودة',
       description: 'الصفحة التي تبحث عنها غير موجودة أو تم نقلها.',
       cta: 'العودة إلى الرئيسية',
-    },
-    imageReveal: {
-      alt1: 'عرض المنتج 1',
-      alt2: 'عرض المنتج 2',
-      bullets: [
-        'رؤية كاملة لجميع إجراءات العملاء في التطبيق',
-        'عرض وتحكم مباشر في جميع حجوزات المواعيد',
-        'تحكم كامل في مظهر التطبيق من لوحة الإدارة',
-        'إرسال إشعارات للعملاء في أي وقت',
-      ],
     },
     legal: {
       backHome: 'العودة إلى الرئيسية',
@@ -1119,39 +1151,65 @@ export const translations: Record<Language, Record<string, unknown>> = {
       badge: 'המלצות',
       title: 'מה הלקוחות שלנו',
       titleHighlight: 'אומרים',
-      subtitle: 'אל תסמוך רק על המילה שלנו — שמע מעסקים שעזרנו להם להצליח.',
+      subtitle:
+        'משוב אמיתי מעסקים שעבדנו איתם. לחצו על «הוסף ביקורת» לפתיחת הטופס — נדרש אימייל תקין כדי להציג את הביקורת בדף.',
       items: [
         {
-          name: 'שרה כהן',
-          role: 'בעלים, בלום קפה',
+          name: 'נורה אלמנסורי',
+          role: 'בעלים, מסעדת א-שאם — חיפה',
           quote:
-            'MadarLabs שינו לנו את הנוכחות באונליין. מערכת ההזמנות העלתה את ההכנסות ב-40% בחודש הראשון. צוות מקצועי שסיפק לפני הזמן.',
+            'הקימו לנו אתר ברור עם תפריט והזמנות בוואטסאפ. הלקוחות מוצאים אותנו בקלות וההספקה בזמן.',
         },
         {
-          name: 'דוד לוי',
-          role: 'מנכ"ל, פיטפרו חדר כושר',
+          name: 'חאלד אלעותייבי',
+          role: 'מייסד, חדר כושר אפק — נצרת',
           quote:
-            'האפליקציה שבנו בדיוק מה שהיינו צריכים. מעורבות החברים עלתה פי 3 וההזמנות עובדות חלק. ממליץ בחום!',
+            'הזמנות שיעורים מהטלפון בלי לעמוס על הכניסה. הכל פשוט והתיקונים הקטנים טופלו מהר.',
         },
         {
-          name: 'מאיה שפירא',
-          role: 'מנהלת, פריים נדל"ן',
+          name: 'למיאה א-זהראני',
+          role: 'מנהלת, משרד נדל״ן אלמדינה',
           quote:
-            'אתר יצירת הלידים שינה את המשחק. מגיעים אלינו 150+ לידים איכותיים בחודש. התשואה מדהימה.',
+            'האתר נטען מהר וטופס לידים עובד. אנחנו מקבלים פניות ענייניות יותר.',
         },
         {
-          name: 'אורן טל',
-          role: 'מייסד, טקסרב IT',
+          name: 'עבד אלרחמן פהד',
+          role: 'מייסד, חנות טק — טייבה',
           quote:
-            'מקצועיים, זמינים, ומבינים עסקים. האתר החדש מייצג את המותג וממיר מבקרים ללקוחות.',
+            'חנות נראית מקצועית, תשלום בנייד חלק. עזרו להבין אחסון בצורה פשוטה. שיפור מכירות בתוך שבועות.',
         },
         {
-          name: 'נועה ברגר',
-          role: 'בעלים, סטיילבוקס בוטיק',
+          name: 'הודא אלקחטאני',
+          role: 'בעלים, מספרת נדא',
           quote:
-            'חנות האונליין שבנו יפה וקלה לניהול. המכירות עולות בהתמדה מאז ההשקה. מרוצה מאוד!',
+            'הזמנה אונליין מצמצמת ביטולים. הלקוחה בוחרת שעה, מקבלים וואטסאפ. כמו שביקשנו.',
         },
       ],
+      reviewForm: {
+        title: 'השאר משוב',
+        subtitle:
+          'לפרסום ביקורת בדף זה נדרש אימייל. לא נציג את כתובת המייל המלאה — רק גרסה ממוסכת (לדוגמה ab***@gmail.com) לצד שמך.',
+        nameLabel: 'שמך',
+        namePlaceholder: 'שם מלא',
+        emailLabel: 'אימייל',
+        emailPlaceholder: 'name@email.com',
+        emailHint: 'נדרש — אנחנו מציגים בכרטיס רק אימייל ממוסך.',
+        emailInvalid: 'הכנס כתובת אימייל תקפה.',
+        roleLabel: 'תפקיד או עסק',
+        rolePlaceholder: 'לדוגמה: בעלים, בית קפה',
+        optional: 'אופציונלי',
+        ratingLabel: 'דירוג',
+        reviewLabel: 'המלצה שלך',
+        reviewPlaceholder: 'במה הייתם מעולים? מה היית מספר לעסק אחר?',
+        submit: 'שלח',
+        submitting: 'שולח…',
+        success: 'תודה! הביקורת מופיעה עכשיו למעלה.',
+        error: 'השליחה נכשלה. בדוק את השדות ונסה שוב.',
+        errorApi:
+          'אין כרגע חיבור לשירות הביקורות. נסו שוב בעוד כמה דקות.',
+        visitorBadge: 'מבקר',
+        dialogCta: 'הוסף ביקורת',
+      },
     },
     faq: {
       badge: 'שאלות נפוצות',
@@ -1287,16 +1345,6 @@ export const translations: Record<Language, Record<string, unknown>> = {
       title: 'הדף לא נמצא',
       description: 'הדף שחיפשת לא קיים או הועבר.',
       cta: 'חזרה לדף הבית',
-    },
-    imageReveal: {
-      alt1: 'תצוגת מוצר 1',
-      alt2: 'תצוגת מוצר 2',
-      bullets: [
-        'מעקב מלא אחרי כל הפעולות שהלקוחות מבצעים באפליקציה',
-        'צפייה ושליטה בזמן אמת בכל הזמנות התורים',
-        'שליטה מלאה במראה האפליקציה מתפריט הניהול',
-        'שליחת התראות ללקוחות בכל רגע',
-      ],
     },
     legal: {
       backHome: 'חזרה לדף הבית',

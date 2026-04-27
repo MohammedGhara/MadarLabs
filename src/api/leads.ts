@@ -4,6 +4,7 @@
  */
 
 import { config } from "@/lib/config";
+import { shouldUseSameOriginApiForThisBuild } from "@/lib/sameOriginApi";
 
 export interface LeadPayload {
   fullName: string;
@@ -41,19 +42,11 @@ function parseApiErrorBody(raw: string): { message?: string; error?: string } {
 
 export async function submitLead(payload: LeadPayload): Promise<LeadResponse> {
   const baseUrl = config.apiBaseUrl?.trim();
-  /** In dev, call same-origin `/api/*` so Vite can proxy to Express. */
-  const url =
-    import.meta.env.DEV
+  const url = import.meta.env.DEV
+    ? LEADS_ENDPOINT
+    : shouldUseSameOriginApiForThisBuild() || !baseUrl
       ? LEADS_ENDPOINT
-      : baseUrl
-        ? `${baseUrl.replace(/\/$/, "")}${LEADS_ENDPOINT}`
-        : null;
-
-  if (!url) {
-    throw new Error(
-      "API not configured. Set VITE_API_BASE_URL for production builds. For local dev, run the API server (cd server && npm start) so Vite can proxy /api to port 3001."
-    );
-  }
+      : `${baseUrl.replace(/\/$/, "")}${LEADS_ENDPOINT}`;
 
   const response = await fetch(url, {
     method: "POST",

@@ -177,7 +177,7 @@ const Portfolio = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 sm:gap-8 xl:grid-cols-3 xl:gap-9">
+          <div className="grid grid-cols-2 gap-3 sm:gap-7 md:gap-8 xl:grid-cols-3 xl:gap-9">
             {projects.map((project, index) => {
               const isFeatured = project.featured === true;
               const imageFit = project.imageFit ?? 'cover';
@@ -203,10 +203,10 @@ const Portfolio = () => {
                     project.image && !mediaLight && 'bg-zinc-950',
                     !project.image && `bg-gradient-to-br ${project.color}`,
                     isFeatured && useContain
-                      ? 'min-h-[260px] sm:min-h-[300px]'
+                      ? 'min-h-[200px] sm:min-h-[260px] md:min-h-[300px]'
                       : isFeatured
-                        ? 'min-h-[240px] sm:min-h-[272px]'
-                        : 'min-h-[200px]'
+                        ? 'min-h-[180px] sm:min-h-[240px] md:min-h-[272px]'
+                        : 'min-h-[150px] sm:min-h-[200px]'
                   )}
                 >
                   {project.image ? (
@@ -218,7 +218,7 @@ const Portfolio = () => {
                           className={cn(
                             'h-full w-full will-change-transform transition-[transform,filter] duration-700 ease-out-expo motion-safe:group-hover/card:scale-[1.04]',
                             useContain
-                              ? 'object-contain object-center px-4 py-5 sm:px-8 sm:py-9'
+                              ? 'object-contain object-center px-1.5 py-3 sm:px-4 sm:py-5 md:px-8 md:py-9'
                               : 'object-cover object-center',
                             !useContain &&
                               isFeatured &&
@@ -267,7 +267,7 @@ const Portfolio = () => {
 
                   <span
                     className={cn(
-                      'absolute start-4 top-4 z-[6] inline-flex max-w-[calc(100%-2rem)] items-center rounded-full border px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white shadow-lg backdrop-blur-md sm:text-[11px]',
+                      'absolute start-2 top-2 z-[6] inline-flex max-w-[calc(100%-1rem)] items-center rounded-full border px-2 py-1 text-[8px] font-semibold uppercase tracking-[0.12em] text-white shadow-lg backdrop-blur-md sm:start-4 sm:top-4 sm:max-w-[calc(100%-2rem)] sm:px-3.5 sm:py-1.5 sm:text-[10px] sm:tracking-[0.14em] md:text-[11px]',
                       isFeatured && accent === 'cyan' && 'border-cyan-300/35 bg-black/50 tracking-[0.16em] shadow-[0_0_28px_-6px_rgba(34,211,238,0.35)]',
                       isFeatured && accent === 'gold' && 'border-amber-400/50 bg-black/55 tracking-[0.16em] shadow-[0_0_28px_-6px_rgba(251,191,36,0.32)]',
                       !isFeatured && 'border-white/25 bg-black/40 tracking-[0.14em]'
@@ -277,20 +277,20 @@ const Portfolio = () => {
                   </span>
 
                   {project.image && !isFeatured ? (
-                    <div className="pointer-events-none absolute end-4 bottom-4 z-[6]">
-                      <div className="rounded-2xl border border-white/30 bg-black/35 p-3 shadow-xl backdrop-blur-md sm:p-4">
+                    <div className="pointer-events-none absolute end-1.5 bottom-1.5 z-[6] sm:end-4 sm:bottom-4">
+                      <div className="rounded-xl border border-white/30 bg-black/35 p-2 shadow-xl backdrop-blur-md sm:rounded-2xl sm:p-4">
                         <project.icon
-                          className="h-9 w-9 text-amber-200 drop-shadow-md sm:h-11 sm:w-11"
+                          className="h-6 w-6 text-amber-200 drop-shadow-md sm:h-9 sm:w-9 md:h-11 md:w-11"
                           strokeWidth={1.65}
                           aria-hidden
                         />
                       </div>
                     </div>
                   ) : !project.image ? (
-                    <div className="relative z-[6] flex h-full min-h-[200px] items-center justify-center p-8">
-                      <div className="portfolio-icon-shell rounded-2xl border border-white/30 bg-white/15 p-5 shadow-xl backdrop-blur-md sm:p-6">
+                    <div className="relative z-[6] flex h-full min-h-[150px] items-center justify-center p-4 sm:min-h-[200px] sm:p-8">
+                      <div className="portfolio-icon-shell rounded-2xl border border-white/30 bg-white/15 p-3 shadow-xl backdrop-blur-md sm:p-6">
                         <project.icon
-                          className="h-11 w-11 text-white drop-shadow-md sm:h-14 sm:w-14"
+                          className="h-8 w-8 text-white drop-shadow-md sm:h-11 sm:w-11 md:h-14 md:w-14"
                           strokeWidth={1.65}
                           aria-hidden
                         />
@@ -302,8 +302,8 @@ const Portfolio = () => {
                 {/* Body */}
                 <div
                   className={cn(
-                    'relative flex flex-1 flex-col justify-between bg-gradient-to-b from-card via-card to-muted/[0.35] p-6 sm:p-7',
-                    isFeatured && 'pt-7 sm:pt-8'
+                    'relative flex flex-1 flex-col justify-between bg-gradient-to-b from-card via-card to-muted/[0.35] p-3.5 sm:p-6 md:p-7',
+                    isFeatured && 'pt-5 sm:pt-7 md:pt-8'
                   )}
                 >
                   <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border/80 to-transparent" />
@@ -323,27 +323,27 @@ const Portfolio = () => {
                   <div>
                     <h3
                       className={cn(
-                        'text-xl font-bold leading-snug tracking-tight text-foreground sm:text-[1.35rem]',
-                        isFeatured && 'text-[1.35rem] font-extrabold tracking-tight sm:text-[1.45rem]'
+                        'text-[0.95rem] font-bold leading-tight tracking-tight text-foreground sm:text-xl sm:leading-snug md:text-[1.35rem]',
+                        isFeatured && 'text-base font-extrabold sm:text-[1.35rem] md:text-[1.45rem]'
                       )}
                     >
                       {t(project.titleKey)}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
+                    <p className="mt-2 line-clamp-4 text-[11px] leading-relaxed text-muted-foreground sm:mt-3 sm:line-clamp-none sm:text-sm md:text-[0.9375rem]">
                       {t(project.descriptionKey)}
                     </p>
                   </div>
 
-                  <div className="mt-6 rounded-2xl border border-primary/12 bg-gradient-to-br from-primary/[0.07] to-transparent px-4 py-3.5 sm:mt-7">
-                    <div className="flex gap-3.5">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary shadow-inner">
-                        <TrendingUp className="h-[18px] w-[18px]" aria-hidden />
+                  <div className="mt-3 rounded-xl border border-primary/12 bg-gradient-to-br from-primary/[0.07] to-transparent px-2.5 py-2.5 sm:mt-6 sm:rounded-2xl sm:px-4 sm:py-3.5 md:mt-7">
+                    <div className="flex gap-2 sm:gap-3.5">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/12 text-primary shadow-inner sm:h-10 sm:w-10 sm:rounded-xl">
+                        <TrendingUp className="h-3.5 w-3.5 sm:h-[18px] sm:w-[18px]" aria-hidden />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-[11px]">
+                        <p className="text-[8px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-[10px] md:text-[11px]">
                           {t('portfolio.result')}
                         </p>
-                        <p className="mt-0.5 text-sm font-semibold leading-snug text-foreground sm:text-base">
+                        <p className="mt-0.5 text-[11px] font-semibold leading-snug text-foreground sm:text-sm md:text-base">
                           {t(project.resultKey)}
                         </p>
                       </div>
@@ -356,7 +356,7 @@ const Portfolio = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={cn(
-                        'portfolio-cta-glow group/cta relative mt-6 inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl border px-4 py-3 text-sm font-semibold shadow-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+                        'portfolio-cta-glow group/cta relative mt-3 inline-flex w-full min-h-[40px] items-center justify-center gap-1.5 overflow-hidden rounded-lg border px-2.5 py-2 text-[11px] font-semibold shadow-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:mt-6 sm:min-h-0 sm:gap-2.5 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm',
                         isFeatured && accent === 'gold'
                           ? 'border-amber-500/30 bg-gradient-to-r from-amber-500/[0.1] via-primary/[0.08] to-rose-500/[0.06] text-primary hover:border-amber-500/45 hover:shadow-md hover:shadow-amber-500/15'
                           : isFeatured
@@ -371,9 +371,9 @@ const Portfolio = () => {
                       />
                     </a>
                   ) : (
-                    <Link
+                      <Link
                       to="/contact"
-                      className="portfolio-cta-glow group/cta relative mt-6 inline-flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl border border-primary/25 bg-primary/[0.06] px-4 py-3 text-sm font-semibold text-primary shadow-sm transition-colors hover:border-primary/40 hover:bg-primary/[0.1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      className="portfolio-cta-glow group/cta relative mt-3 inline-flex w-full min-h-[40px] items-center justify-center gap-1.5 overflow-hidden rounded-lg border border-primary/25 bg-primary/[0.06] px-2.5 py-2 text-[11px] font-semibold text-primary shadow-sm transition-colors hover:border-primary/40 hover:bg-primary/[0.1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:mt-6 sm:min-h-0 sm:gap-2.5 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm"
                     >
                       <span className="relative z-[1]">{t('portfolio.requestSimilar')}</span>
                       <ArrowUpRight

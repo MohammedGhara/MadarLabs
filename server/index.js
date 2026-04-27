@@ -2,12 +2,45 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { sendLeadMail } from "./mail.js";
+import {
+  readReviews,
+  appendReview,
+  validateReviewBody,
+  sanitizeReviewForClient,
+} from "./reviews.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "48kb" }));
+
+app.get("/api/reviews", async (_req, res) => {
+  try {
+    const list = await readReviews();
+    const reviews = list.map(sanitizeReviewForClient);
+    res.json({ reviews });
+  } catch (err) {
+    console.error("GET /api/reviews:", err);
+    res.status(500).json({ reviews: [] });
+  }
+});
+
+app.post("/api/reviews", async (req, res) => {
+  const validated = validateReviewBody(req.body);
+  if (validated.error) {
+    return res.status(400).json({ success: false, message: validated.error });
+  }
+  try {
+    const row = await appendReview(validated.data);
+    res
+      .status(201)
+      .json({ success: true, review: sanitizeReviewForClient(row), message: "Review published." });
+  } catch (err) {
+    console.error("POST /api/reviews:", err);
+    res.status(500).json({ success: false, message: "Could not save review. Try again later." });
+  }
+});
 
 /** Inbox that receives contact form submissions */
 const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL || "madarlabs0@gmail.com";
@@ -198,7 +231,8 @@ app.post("/api/leads", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-  console.log(`Lead form: POST http://localhost:${PORT}/api/leads`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running at http://127.0.0.1:${PORT} (and localhost)`);
+  console.log(`Lead form: POST http://127.0.0.1:${PORT}/api/leads`);
+  console.log(`Reviews: GET/POST http://127.0.0.1:${PORT}/api/reviews`);
 });

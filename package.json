@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:full": "concurrently -n WEB,API -c cyan,green \"npm run dev\" \"npm run server\"",
+    "dev:full": "npx --yes kill-port@2.0.1 3001 && npx --yes concurrently -k -n API,WEB -c green,cyan \"npm run server\" \"npx --yes wait-on@7.2.0 -t 60 -i 200 http://127.0.0.1:3001/api/reviews && npm run dev\"",
     "server": "cd server && npm run start",
     "build": "vite build",
     "build:dev": "vite build --mode development",
@@ -88,6 +88,8 @@
     "typescript-eslint": "^8.38.0",
     "vite": "^6.0.0",
     "vitest": "^3.2.4",
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "kill-port": "^2.0.1",
+    "wait-on": "^7.2.0"
   }
 }

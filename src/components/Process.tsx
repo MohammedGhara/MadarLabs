@@ -1,4 +1,4 @@
-import { Phone, PenTool, Code, Gauge, Rocket, Clock } from 'lucide-react';
+import { Phone, PenTool, Code, Gauge, Rocket } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ScrollRevealSection from './ScrollRevealSection';
 
@@ -36,12 +36,6 @@ const Process = () => {
       titleKey: 'process.steps.launch.title',
       descKey: 'process.steps.launch.description',
     },
-  ];
-
-  const timelines = [
-    { typeKey: 'process.timelineItems.website', duration: '7–14' },
-    { typeKey: 'process.timelineItems.ecommerce', duration: '14–30' },
-    { typeKey: 'process.timelineItems.appMvp', duration: '30–60' },
   ];
 
   return (
@@ -109,32 +103,6 @@ const Process = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Timeline Estimates */}
-        <div className="mt-10 sm:mt-16">
-          <div className="card-premium bg-gradient-primary p-6 sm:p-8 md:p-10 overflow-hidden relative border-0 shadow-strong">
-            {/* Decorative glow - mobile only */}
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full blur-3xl pointer-events-none md:hidden" />
-            <div className="flex items-center gap-3 mb-4 sm:mb-6 relative z-10">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white flex items-center justify-center shadow-strong ring-2 ring-primary/30">
-                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-              </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-extrabold text-primary drop-shadow-lg">{t('process.timelines')}</h3>
-            </div>
-            {/* Mobile: vertical stack, Desktop: 3-column grid */}
-            <div className="flex flex-col md:grid md:grid-cols-3 gap-3 md:gap-6 relative z-10">
-              {timelines.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between md:flex-col md:text-center gap-4 md:gap-0 bg-white rounded-xl p-4 md:p-5 md:py-5 border-2 border-white/40 shadow-strong"
-                >
-                  <p className="text-foreground text-sm md:text-base font-semibold md:mb-2">{t(item.typeKey)}</p>
-                  <p className="text-2xl md:text-3xl font-bold text-primary md:mt-0">{item.duration} days</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
         </ScrollRevealSection>

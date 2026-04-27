@@ -19,6 +19,15 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
+  preview: {
+    port: 8080,
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:3001",
+        changeOrigin: true,
+      },
+    },
+  },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
