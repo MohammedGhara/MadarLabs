@@ -13,6 +13,7 @@ import {
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
+import { cn } from '@/lib/utils';
 import {
   Sheet,
   SheetContent,
@@ -163,7 +164,7 @@ const Header = () => {
             drawerSide === 'right' ? '[&>button]:left-4 [&>button]:right-auto' : ''
           }`}
         >
-          <SheetHeader className="border-b border-border/60 px-6 py-5 text-start">
+          <SheetHeader className="mobile-drawer-header border-b border-border/60 px-6 py-5 text-start opacity-0">
             <SheetTitle className="flex items-center gap-2.5 text-start" dir={dir}>
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-primary shadow-soft">
                 <span className="text-lg font-bold text-primary-foreground">M</span>
@@ -174,7 +175,7 @@ const Header = () => {
             </SheetTitle>
           </SheetHeader>
 
-          <nav className="flex flex-col gap-1 px-4 py-5" dir={dir}>
+          <nav className="mobile-drawer-nav flex flex-col gap-1 px-4 py-5" dir={dir}>
             {navLinks.map((link) => {
               const Icon = link.icon;
               const active = isStandaloneNavActive(link.to);
@@ -184,9 +185,10 @@ const Header = () => {
                   to={link.to}
                   onClick={() => handleNavClick(link.to)}
                   dir={dir}
-                  className={`flex items-center gap-3 rounded-xl px-3 py-3.5 text-base font-medium transition-colors hover:bg-primary/5 active:bg-primary/10 ${
+                  className={cn(
+                    'mobile-drawer-item flex items-center gap-3 rounded-xl px-3 py-3.5 text-base font-medium transition-colors hover:bg-primary/5 active:bg-primary/10',
                     active ? 'bg-primary/10 text-primary' : 'text-foreground'
-                  }`}
+                  )}
                 >
                   <span
                     className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
@@ -201,7 +203,7 @@ const Header = () => {
             })}
           </nav>
 
-          <div className="mt-auto border-t border-border/60 px-4 py-5" dir={dir}>
+          <div className="mobile-drawer-cta mt-auto border-t border-border/60 px-4 py-5" dir={dir}>
             <Link
               to="/#contact"
               onClick={() => setIsMobileMenuOpen(false)}

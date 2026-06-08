@@ -1,6 +1,6 @@
 import { Phone, PenTool, Code, Gauge, Rocket, type LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ScrollRevealSection from './ScrollRevealSection';
+import ScrollRevealSection, { ScrollReveal } from './ScrollRevealSection';
 import { cn } from '@/lib/utils';
 
 const STEPS: {
@@ -73,17 +73,12 @@ const Process = () => {
               {STEPS.map((step, index) => {
                 const Icon = step.icon;
                 return (
-                  <div
+                  <ScrollReveal
                     key={step.number}
-                    className={cn(
-                      'group flex flex-col items-center text-center',
-                      'animate-reveal',
-                      index === 1 && 'animate-reveal-delay-2',
-                      index === 2 && 'animate-reveal-delay-3',
-                      index === 3 && 'animate-reveal-delay-4',
-                      index === 4 && 'animate-reveal-delay-5'
-                    )}
+                    delay={index + 1}
+                    className="group flex h-full flex-col items-center text-center"
                   >
+                  <div className="flex h-full flex-col items-center text-center">
                     <div className="relative mb-7 flex flex-col items-center">
                       <div className="relative flex h-[4.25rem] w-[4.25rem] items-center justify-center rounded-2xl bg-gradient-primary shadow-[0_8px_28px_-6px_hsl(221_83%_53%/0.55)] ring-4 ring-background transition-transform duration-500 ease-out group-hover:scale-105">
                         <Icon className="h-7 w-7 text-primary-foreground" strokeWidth={2} />
@@ -100,6 +95,7 @@ const Process = () => {
                       <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descKey)}</p>
                     </div>
                   </div>
+                  </ScrollReveal>
                 );
               })}
             </div>
@@ -119,17 +115,10 @@ const Process = () => {
               {STEPS.map((step, index) => {
                 const Icon = step.icon;
                 return (
-                  <div
+                  <ScrollReveal
                     key={step.number}
-                    className={cn(
-                      'relative flex gap-4 sm:gap-5',
-                      rtl && 'flex-row-reverse',
-                      'animate-reveal',
-                      index === 1 && 'animate-reveal-delay-2',
-                      index === 2 && 'animate-reveal-delay-3',
-                      index === 3 && 'animate-reveal-delay-4',
-                      index === 4 && 'animate-reveal-delay-5'
-                    )}
+                    delay={index + 1}
+                    className={cn('relative flex gap-4 sm:gap-5', rtl && 'flex-row-reverse')}
                   >
                     <div className="relative z-10 flex shrink-0 flex-col items-center pt-1">
                       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-primary shadow-md ring-4 ring-background sm:h-12 sm:w-12">
@@ -151,7 +140,7 @@ const Process = () => {
                       </h3>
                       <p className="text-sm leading-relaxed text-muted-foreground">{t(step.descKey)}</p>
                     </div>
-                  </div>
+                  </ScrollReveal>
                 );
               })}
             </div>

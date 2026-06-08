@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Send, CheckCircle2, Mail, MapPin, Sparkles, User, Briefcase, MessageCircle, FileText } from 'lucide-react';
-import ScrollRevealSection from './ScrollRevealSection';
+import ScrollRevealSection, { ScrollReveal } from './ScrollRevealSection';
 import { z } from 'zod';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useToast } from '@/hooks/use-toast';
@@ -172,9 +172,9 @@ const LeadForm = () => {
         </div>
 
         {/* Form + Contact */}
-        <div className="flex flex-col gap-6 max-w-3xl mx-auto">
+        <ScrollReveal delay={2} className="mx-auto flex max-w-3xl flex-col gap-6">
           {/* Form Card */}
-          <form onSubmit={handleSubmit} className="card-glass p-6 sm:p-8 flex flex-col overflow-visible">
+          <form onSubmit={handleSubmit} className="card-glass flex flex-col overflow-visible p-6 sm:p-8">
             {/* About You */}
             <div className="mb-6">
               <div className={`flex items-center gap-2 mb-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
@@ -463,7 +463,7 @@ const LeadForm = () => {
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
         </ScrollRevealSection>
       </div>
     </section>

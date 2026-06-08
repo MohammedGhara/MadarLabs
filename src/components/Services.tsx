@@ -1,6 +1,6 @@
 import { Globe, ShoppingCart, Smartphone, Calendar, LayoutDashboard, Palette } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ScrollRevealSection from './ScrollRevealSection';
+import ScrollRevealSection, { ScrollReveal } from './ScrollRevealSection';
 
 const Services = () => {
   const { t } = useLanguage();
@@ -59,11 +59,13 @@ const Services = () => {
         {/* Services Grid */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
           {services.map((service, index) => (
-            <div
+            <ScrollReveal
               key={index}
-              className={`animate-reveal card-premium group cursor-pointer p-5 sm:p-7 card-hover-lift border border-border/50 hover:border-primary/15 ${
-                index === 0 ? 'animate-reveal-delay-2' : ''
-              } ${index === 1 ? 'animate-reveal-delay-3' : ''} ${index === 2 ? 'animate-reveal-delay-3' : ''} ${index === 3 ? 'animate-reveal-delay-4' : ''} ${index === 4 ? 'animate-reveal-delay-4' : ''} ${index === 5 ? 'animate-reveal-delay-5' : ''}`}
+              delay={Math.min(index + 1, 5)}
+              className="h-full"
+            >
+            <div
+              className="card-premium group h-full cursor-pointer border border-border/50 p-5 card-hover-lift hover:border-primary/15 sm:p-7"
             >
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-105 transition-transform duration-500 ease-out shadow-md ring-1 ring-white/10">
                 <service.icon className="w-6 h-6 sm:w-7 sm:h-7 text-primary-foreground" />
@@ -71,6 +73,7 @@ const Services = () => {
               <h3 className="text-base sm:text-xl font-bold text-foreground mb-2 sm:mb-3 tracking-tight">{t(service.titleKey)}</h3>
               <p className="text-muted-foreground text-xs sm:text-base leading-relaxed">{t(service.descKey)}</p>
             </div>
+            </ScrollReveal>
           ))}
         </div>
         </ScrollRevealSection>

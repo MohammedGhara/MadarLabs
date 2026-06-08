@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ScrollRevealSection from './ScrollRevealSection';
+import ScrollRevealSection, { ScrollReveal } from './ScrollRevealSection';
 
 const FAQ = () => {
   const { t, dir } = useLanguage();
@@ -30,25 +30,26 @@ const FAQ = () => {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="animate-reveal animate-reveal-delay-3 max-w-3xl mx-auto">
+        <div className="mx-auto max-w-3xl">
           <Accordion type="single" collapsible className="space-y-4">
             {Array.isArray(faqs) && faqs.map((faq, index) => (
+              <ScrollReveal key={index} delay={Math.min(index + 1, 5)}>
               <AccordionItem
-                key={index}
                 value={`item-${index}`}
-                className="bg-card rounded-2xl border border-border/60 px-6 shadow-card overflow-hidden transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
+                className="overflow-hidden rounded-2xl border border-border/60 bg-card px-6 shadow-card transition-all duration-300 hover:border-primary/20 hover:shadow-lg"
               >
                 <AccordionTrigger
-                  className={`font-semibold text-foreground hover:no-underline py-5 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                  className={`py-5 font-semibold text-foreground hover:no-underline ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                 >
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent
-                  className={`text-muted-foreground pb-5 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
+                  className={`pb-5 text-muted-foreground ${dir === 'rtl' ? 'text-right' : 'text-left'}`}
                 >
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
+              </ScrollReveal>
             ))}
           </Accordion>
         </div>

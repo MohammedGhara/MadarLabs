@@ -12,7 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
-import ScrollRevealSection from './ScrollRevealSection';
+import ScrollRevealSection, { ScrollReveal } from './ScrollRevealSection';
 
 type FeaturedAccent = 'cyan' | 'gold';
 
@@ -35,15 +35,6 @@ type ProjectCard = {
   /** Glow + badge accent for featured cards */
   featuredAccent?: FeaturedAccent;
 };
-
-const REVEAL_STAGGER = [
-  'animate-reveal-delay-2',
-  'animate-reveal-delay-3',
-  'animate-reveal-delay-4',
-  'animate-reveal-delay-5',
-  'animate-reveal-delay-6',
-  'animate-reveal-delay-7',
-] as const;
 
 /** Uniform media frame — every card uses the same preview size */
 const CARD_MEDIA_CLASS =
@@ -128,14 +119,13 @@ const Portfolio = () => {
     const accent: FeaturedAccent = project.featuredAccent ?? 'cyan';
 
     return (
+      <ScrollReveal key={project.titleKey} delay={Math.min(index + 1, 6)} className="h-full">
       <article
-        key={project.titleKey}
         className={cn(
-          'animate-reveal group/card portfolio-card-premium flex h-full flex-col overflow-hidden rounded-[1.5rem] border bg-card/90 backdrop-blur-[1px]',
+          'group/card portfolio-card-premium flex h-full flex-col overflow-hidden rounded-[1.5rem] border bg-card/90 backdrop-blur-[1px]',
           isFeatured
             ? 'border-primary/20 shadow-md shadow-black/[0.06] transition-all duration-500 ease-out motion-safe:hover:-translate-y-2 motion-safe:hover:border-primary/35 motion-safe:hover:shadow-2xl motion-safe:hover:shadow-primary/[0.14]'
-            : 'border-border/55 transition-shadow duration-300 hover:border-border/80',
-          REVEAL_STAGGER[index] ?? 'animate-reveal-delay-8'
+            : 'border-border/55 transition-shadow duration-300 hover:border-border/80'
         )}
       >
         <div
@@ -307,6 +297,7 @@ const Portfolio = () => {
           )}
         </div>
       </article>
+      </ScrollReveal>
     );
   };
 
