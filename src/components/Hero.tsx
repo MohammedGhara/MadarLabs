@@ -52,7 +52,7 @@ const Hero = () => {
             style={{ animationDelay: '0.14s' }}
           >
             <Link
-              to="/contact"
+              to="/#contact"
               className="btn-primary group w-full rounded-xl px-8 py-4 text-center text-base glow-soft shadow-[0_8px_32px_-8px_hsl(221_83%_53%/0.6)] transition-all duration-300 hover:glow-strong sm:w-auto md:text-lg"
             >
               <span className="inline-flex items-center justify-center gap-2">

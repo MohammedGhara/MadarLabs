@@ -3,6 +3,7 @@ import type { Language } from "./types";
 export const translations: Record<Language, Record<string, unknown>> = {
   en: {
     nav: {
+      home: 'Home',
       services: 'Services',
       portfolio: 'Portfolio',
       process: 'Process',
@@ -478,6 +479,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
   },
   ar: {
     nav: {
+      home: 'الرئيسية',
       services: 'الخدمات',
       portfolio: 'أعمالنا',
       process: 'العملية',
@@ -953,6 +955,7 @@ export const translations: Record<Language, Record<string, unknown>> = {
   },
   he: {
     nav: {
+      home: 'בית',
       services: 'שירותים',
       portfolio: 'תיק עבודות',
       process: 'תהליך',

@@ -7,6 +7,7 @@ import Services from '@/components/Services';
 import Portfolio from '@/components/Portfolio';
 import Process from '@/components/Process';
 import FAQ from '@/components/FAQ';
+import LeadForm from '@/components/LeadForm';
 import Footer from '@/components/Footer';
 import FloatingButtons from '@/components/FloatingButtons';
 
@@ -35,6 +36,7 @@ const Index = () => {
         <Portfolio />
         <Process />
         <FAQ />
+        <LeadForm />
       </main>
       <Footer />
       <FloatingButtons />

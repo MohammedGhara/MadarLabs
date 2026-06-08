@@ -8,20 +8,11 @@ const Footer = () => {
   const locationText = String(t('footer.locationLine'));
   const currentYear = new Date().getFullYear();
 
-  const links = [
-    { to: '/#services', labelKey: 'nav.services' },
-    { to: '/#portfolio', labelKey: 'nav.portfolio' },
-    { to: '/#process', labelKey: 'nav.process' },
-    { to: '/pricing', labelKey: 'nav.pricing' },
-    { to: '/#faq', labelKey: 'nav.faq' },
-    { to: '/contact', labelKey: 'nav.contact' },
-  ];
-
   return (
     <footer className="relative bg-section-muted text-foreground overflow-hidden border-t border-border/60">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="container-main section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4 group">
@@ -59,23 +50,6 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-bold text-lg mb-4 text-foreground">{t('footer.quickLinks')}</h3>
-            <ul className="space-y-3">
-              {links.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 inline-block hover:translate-x-0.5"
-                  >
-                    {t(link.labelKey)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Contact Info */}
