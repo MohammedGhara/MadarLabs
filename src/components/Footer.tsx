@@ -13,7 +13,6 @@ const Footer = () => {
     { to: '/#portfolio', labelKey: 'nav.portfolio' },
     { to: '/#process', labelKey: 'nav.process' },
     { to: '/pricing', labelKey: 'nav.pricing' },
-    { to: '/#testimonials', labelKey: 'nav.reviews' },
     { to: '/#faq', labelKey: 'nav.faq' },
     { to: '/contact', labelKey: 'nav.contact' },
   ];

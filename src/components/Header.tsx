@@ -26,7 +26,6 @@ const Header = () => {
     { to: '/#portfolio', label: t('nav.portfolio') },
     { to: '/#process', label: t('nav.process') },
     { to: '/pricing', label: t('nav.pricing') },
-    { to: '/#testimonials', label: t('nav.reviews') },
     { to: '/#faq', label: t('nav.faq') },
     { to: '/contact', label: t('nav.contact') },
   ];

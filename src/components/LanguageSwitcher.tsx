@@ -7,10 +7,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-const languages: { code: Language; label: string; flag: string }[] = [
-  { code: 'en', label: 'English', flag: '🇺🇸' },
-  { code: 'ar', label: 'العربية', flag: '🇸🇦' },
-  { code: 'he', label: 'עברית', flag: '🇮🇱' },
+const languages: { code: Language; label: string }[] = [
+  { code: 'en', label: 'English' },
+  { code: 'ar', label: 'العربية' },
+  { code: 'he', label: 'עברית' },
 ];
 
 interface LanguageSwitcherProps {
@@ -32,7 +32,7 @@ const LanguageSwitcher = ({ variant = 'default' }: LanguageSwitcherProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger className={triggerClass}>
         <Globe size={18} />
-        <span className="hidden sm:inline">{currentLang?.flag}</span>
+        <span className="hidden sm:inline">{currentLang?.label}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[140px]">
         {languages.map((lang) => (
@@ -43,7 +43,6 @@ const LanguageSwitcher = ({ variant = 'default' }: LanguageSwitcherProps) => {
               language === lang.code ? 'bg-primary/10 text-primary' : ''
             }`}
           >
-            <span>{lang.flag}</span>
             <span>{lang.label}</span>
           </DropdownMenuItem>
         ))}
