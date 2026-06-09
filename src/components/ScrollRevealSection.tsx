@@ -7,6 +7,22 @@ const OBSERVER_OPTIONS: IntersectionObserverInit = {
   threshold: 0.12,
 };
 
+let sharedObserver: IntersectionObserver | null = null;
+
+function getSharedObserver(): IntersectionObserver {
+  if (!sharedObserver) {
+    sharedObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          sharedObserver?.unobserve(entry.target);
+        }
+      });
+    }, OBSERVER_OPTIONS);
+  }
+  return sharedObserver;
+}
+
 interface ScrollRevealSectionProps {
   children: ReactNode;
   className?: string;
@@ -19,22 +35,13 @@ export default function ScrollRevealSection({ children, className = '' }: Scroll
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, OBSERVER_OPTIONS);
-
+    const observer = getSharedObserver();
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => observer.unobserve(el);
   }, []);
 
   return (
-    <div ref={ref} className={cn('reveal-section', className)}>
+    <div ref={ref} className={cn('reveal-section content-auto', className)}>
       {children}
     </div>
   );
@@ -66,18 +73,9 @@ export function ScrollReveal({ children, className = '', delay = 0 }: ScrollReve
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, OBSERVER_OPTIONS);
-
+    const observer = getSharedObserver();
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => observer.unobserve(el);
   }, []);
 
   const delayClass = DELAY_CLASS[Math.min(Math.max(delay, 0), 8)];

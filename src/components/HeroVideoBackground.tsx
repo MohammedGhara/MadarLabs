@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
 
@@ -6,16 +6,27 @@ const VIDEO_SRC = "/324254_medium.mp4";
 
 /**
  * Full-bleed looping video for the hero, with a dark scrim so headline and CTAs stay legible.
- * Muted + playsInline + loop for iOS and autoplay policy compliance.
+ * Video source is deferred until after first paint to protect LCP/FCP.
  */
 const HeroVideoBackground = () => {
   const { dir } = useLanguage();
   const rtl = dir === "rtl";
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const schedule = () => setShouldLoadVideo(true);
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(schedule, { timeout: 1200 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const timer = window.setTimeout(schedule, 400);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const el = videoRef.current;
-    if (!el) return;
+    if (!el || !shouldLoadVideo) return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sync = () => {
       if (mq.matches) {
@@ -29,7 +40,7 @@ const HeroVideoBackground = () => {
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
-  }, []);
+  }, [shouldLoadVideo]);
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden bg-[#020617]" aria-hidden>
@@ -41,10 +52,10 @@ const HeroVideoBackground = () => {
         muted
         loop
         playsInline
-        preload="auto"
+        preload={shouldLoadVideo ? "metadata" : "none"}
         disablePictureInPicture
       >
-        <source src={VIDEO_SRC} type="video/mp4" />
+        {shouldLoadVideo ? <source src={VIDEO_SRC} type="video/mp4" /> : null}
       </video>
       <div
         className="absolute inset-0 bg-gradient-to-b from-slate-950/88 via-slate-950/72 to-slate-950/92"

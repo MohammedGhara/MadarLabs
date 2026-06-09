@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { translations } from '@/locales/translations';
+import { loadLocale } from '@/locales/loadLocale';
 import type { Language } from '@/locales/types';
 
 export type { Language } from '@/locales/types';
@@ -10,6 +10,7 @@ interface LanguageContextType {
   /** Dot-path lookup into the active locale (strings, arrays, or nested objects). */
   t: (key: string) => string | unknown;
   dir: 'ltr' | 'rtl';
+  localeReady: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -43,6 +44,7 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     const saved = localStorage.getItem('preferred-language');
     return (saved as Language) || 'en';
   });
+  const [locale, setLocale] = useState<Record<string, unknown> | null>(null);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
@@ -56,14 +58,25 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     document.documentElement.lang = language;
   }, [language, dir]);
 
+  useEffect(() => {
+    let cancelled = false;
+    setLocale(null);
+    loadLocale(language).then((data) => {
+      if (!cancelled) setLocale(data);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [language]);
+
   const t = (key: string): string | unknown => {
-    const locale = translations[language] as Record<string, unknown>;
+    if (!locale) return key;
     const value = resolveKey(locale, key);
     return value !== undefined && value !== null ? value : key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, dir }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t, dir, localeReady: locale !== null }}>
       {children}
     </LanguageContext.Provider>
   );

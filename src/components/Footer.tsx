@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { config, getWhatsAppLink } from '@/lib/config';
 
 const Footer = () => {
   const { t, dir } = useLanguage();
-  const locationText = String(t('footer.locationLine'));
   const currentYear = new Date().getFullYear();
 
   return (
@@ -56,10 +55,6 @@ const Footer = () => {
           <div>
             <h3 className="font-bold text-lg mb-4 text-foreground">{t('footer.contact')}</h3>
             <ul className="space-y-4">
-              <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                <MapPin size={20} className="text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-muted-foreground">{locationText}</span>
-              </li>
               <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                 <Mail size={20} className="text-primary flex-shrink-0 mt-0.5" />
                 <a

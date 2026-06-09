@@ -1,8 +1,10 @@
+import { lazy, Suspense } from 'react';
 import { ArrowRight, Zap, Users, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
-import HeroVideoBackground from '@/components/HeroVideoBackground';
+
+const HeroVideoBackground = lazy(() => import('@/components/HeroVideoBackground'));
 
 const Hero = () => {
   const { t, dir } = useLanguage();
@@ -16,7 +18,9 @@ const Hero = () => {
 
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden pt-20 sm:min-h-screen">
-      <HeroVideoBackground />
+      <Suspense fallback={<div className="absolute inset-0 z-0 bg-[#020617]" aria-hidden />}>
+        <HeroVideoBackground />
+      </Suspense>
 
       <div className="container-main relative z-20 px-4 pb-20 pt-10 md:px-8 md:pb-28 md:pt-14">
         <div

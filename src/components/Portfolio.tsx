@@ -52,7 +52,7 @@ const Portfolio = () => {
       resultKey: 'portfolio.projects.shishaKing.result',
       imageAltKey: 'portfolio.projects.shishaKing.imageAlt',
       color: 'from-amber-600 via-orange-600 to-rose-900',
-      image: '/portfolio-shishaking.png',
+      image: '/portfolio-shishaking',
       externalUrl: 'https://shishakingsil.com/',
       featured: true,
       imageFit: 'contain',
@@ -67,7 +67,7 @@ const Portfolio = () => {
       resultKey: 'portfolio.projects.hebaFashion.result',
       imageAltKey: 'portfolio.projects.hebaFashion.imageAlt',
       color: 'from-amber-200 via-rose-100 to-stone-200',
-      image: '/portfolio-hebafashion.png',
+      image: '/portfolio-hebafashion',
       externalUrl: 'https://hebafashionil.com/',
       featured: true,
       imageFit: 'contain',
@@ -108,9 +108,6 @@ const Portfolio = () => {
     },
   ];
 
-  const featuredProjects = projects.filter((p) => p.featured);
-  const regularProjects = projects.filter((p) => !p.featured);
-
   const renderProjectCard = (project: ProjectCard, index: number) => {
     const isFeatured = project.featured === true;
     const imageFit = project.imageFit ?? 'cover';
@@ -139,18 +136,22 @@ const Portfolio = () => {
           {project.image ? (
             <>
               <div className="absolute inset-0 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.imageAltKey ? String(t(project.imageAltKey)) : ''}
-                  className={cn(
-                    'h-full w-full will-change-transform transition-[transform,filter] duration-700 ease-out-expo motion-safe:group-hover/card:scale-[1.04]',
-                    useContain
-                      ? 'object-contain object-center px-3 py-4 sm:px-5 sm:py-6 md:px-6 md:py-7'
-                      : 'object-cover object-center'
-                  )}
-                  loading={isFeatured ? 'eager' : 'lazy'}
-                  decoding="async"
-                />
+                <picture>
+                  <source srcSet={`${project.image}.avif`} type="image/avif" />
+                  <source srcSet={`${project.image}.webp`} type="image/webp" />
+                  <img
+                    src={`${project.image}.png`}
+                    alt={project.imageAltKey ? String(t(project.imageAltKey)) : ''}
+                    className={cn(
+                      'h-full w-full transition-transform duration-500 ease-out-expo motion-safe:group-hover/card:scale-[1.03]',
+                      useContain
+                        ? 'object-contain object-center px-3 py-4 sm:px-5 sm:py-6 md:px-6 md:py-7'
+                        : 'object-cover object-center'
+                    )}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
               {isFeatured && accent === 'cyan' && (
                 <div
@@ -365,18 +366,9 @@ const Portfolio = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:gap-8 md:gap-9">
-            {/* Featured live projects — always two equal cards in one row */}
-            <div className="grid grid-cols-2 items-stretch gap-3 sm:gap-7 md:gap-8">
-              {featuredProjects.map((project, index) => renderProjectCard(project, index))}
-            </div>
-
-            {/* Other portfolio examples — uniform card sizes */}
-            <div className="grid grid-cols-2 items-stretch gap-3 sm:gap-7 md:gap-8 lg:grid-cols-4">
-              {regularProjects.map((project, index) =>
-                renderProjectCard(project, index + featuredProjects.length)
-              )}
-            </div>
+          {/* Phone: 2 per row (unchanged). Desktop: 3 equal cards per row */}
+          <div className="grid grid-cols-2 items-stretch gap-3 sm:gap-7 md:gap-8 lg:grid-cols-3">
+            {projects.map((project, index) => renderProjectCard(project, index))}
           </div>
         </ScrollRevealSection>
       </div>

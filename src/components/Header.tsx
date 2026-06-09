@@ -85,7 +85,7 @@ const Header = () => {
         isMobileMenuOpen ? 'z-[40]' : 'z-[100]'
       } ${
         isScrolled || isMobileMenuOpen
-          ? 'bg-background/90 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_32px_-8px_hsl(222_47%_11%/0.08)] border-b border-border/60'
+          ? 'bg-background/92 backdrop-blur-lg shadow-[0_8px_32px_-8px_hsl(222_47%_11%/0.08)] border-b border-border/60'
           : isOverDarkHero
             ? 'bg-black/25 backdrop-blur-md border-b border-white/10'
             : 'bg-background/70 backdrop-blur-md border-b border-border/40'

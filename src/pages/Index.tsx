@@ -3,13 +3,15 @@ import { useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
-import Portfolio from '@/components/Portfolio';
-import Process from '@/components/Process';
-import FAQ from '@/components/FAQ';
-import LeadForm from '@/components/LeadForm';
-import Footer from '@/components/Footer';
-import FloatingButtons from '@/components/FloatingButtons';
+import { lazySection, SectionSuspense } from '@/components/LazyMount';
+
+const Services = lazySection(() => import('@/components/Services'));
+const Portfolio = lazySection(() => import('@/components/Portfolio'));
+const Process = lazySection(() => import('@/components/Process'));
+const FAQ = lazySection(() => import('@/components/FAQ'));
+const LeadForm = lazySection(() => import('@/components/LeadForm'));
+const Footer = lazySection(() => import('@/components/Footer'));
+const FloatingButtons = lazySection(() => import('@/components/FloatingButtons'));
 
 const Index = () => {
   const { dir } = useLanguage();
@@ -32,14 +34,28 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <Services />
-        <Portfolio />
-        <Process />
-        <FAQ />
-        <LeadForm />
+        <SectionSuspense>
+          <Services />
+        </SectionSuspense>
+        <SectionSuspense>
+          <Portfolio />
+        </SectionSuspense>
+        <SectionSuspense>
+          <Process />
+        </SectionSuspense>
+        <SectionSuspense>
+          <FAQ />
+        </SectionSuspense>
+        <SectionSuspense>
+          <LeadForm />
+        </SectionSuspense>
       </main>
-      <Footer />
-      <FloatingButtons />
+      <SectionSuspense>
+        <Footer />
+      </SectionSuspense>
+      <SectionSuspense>
+        <FloatingButtons />
+      </SectionSuspense>
     </div>
   );
 };
